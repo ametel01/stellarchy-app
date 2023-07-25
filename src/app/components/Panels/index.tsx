@@ -431,17 +431,22 @@ export const ResourcesSection: FC = () => {
             <ResearchTabPanel
                 spendableResources={planetResources}
                 techLevels={planetTechLevels}
-                TechCostUpgrade={planetTechCostUpgrade}
+                techCostUpgrade={planetTechCostUpgrade}
+                labLevel={compoundsLevels?.lab}
             />
             <DockyardTabPanel
                 spendableResources={planetResources}
                 shipsLevels={planetShipsLevels}
                 shipsCost={planetShipsCost}
+                dockyardLevel={compoundsLevels?.dockyard}
+                techLevels={planetTechLevels}
             />
             <DefenceTabPanel
                 spendableResources={planetResources}
                 defenceLevels={planetDefencesLevels}
                 defenceCost={planetDefenceCost}
+                dockyardLevel={compoundsLevels?.dockyard}
+                techLevels={planetTechLevels}
             />
             <EmptyTabPanel />
         </ResourcesTabs>

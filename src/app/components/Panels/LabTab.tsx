@@ -2,7 +2,19 @@ import { StyledTabPanel } from "./styleds";
 import { useState } from "react";
 import { TechCost, Points, TechLevels } from "@/utils/types";
 import ResearchBox from "../Boxes/ResearchBox";
-import { calculEnoughResources } from "@/utils";
+import {
+    armourRequirements,
+    beamTechRequirements,
+    calculEnoughResources,
+    combustionRequirements,
+    digitalRequirements,
+    energyRequirements,
+    ionRequirements,
+    plasmaTechRequirements,
+    shieldRequirements,
+    warpRequirements,
+    weaponsRequirements,
+} from "@/utils";
 import armourImg from "@/assets/techs/armour.png";
 import beamImg from "@/assets/techs/laser.png";
 import ionImg from "@/assets/techs/ion.png";
@@ -19,13 +31,15 @@ import energyImg from "@/assets/techs/energy.png";
 interface Props {
     spendableResources?: Points;
     techLevels?: TechLevels;
-    TechCostUpgrade?: TechCost;
+    techCostUpgrade?: TechCost;
+    labLevel?: number;
 }
 
 export const ResearchTabPanel = ({
     spendableResources,
     techLevels,
-    TechCostUpgrade,
+    techCostUpgrade,
+    labLevel,
     ...rest
 }: Props) => {
     return (
@@ -35,87 +49,92 @@ export const ResearchTabPanel = ({
                 title="Energy Innovation"
                 functionCallName="energyInnovation"
                 level={techLevels?.energy}
-                costUpdate={TechCostUpgrade?.energy}
+                costUpdate={techCostUpgrade?.energy}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.energy,
+                        techCostUpgrade.energy,
                         spendableResources
                     )
                 }
+                requirementsMet={energyRequirements(labLevel)}
             />
             <ResearchBox
                 img={computerImg}
                 title="Digital Systems"
                 functionCallName="digitalSystems"
                 level={techLevels?.ion}
-                costUpdate={TechCostUpgrade?.ion}
+                costUpdate={techCostUpgrade?.ion}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.ion,
+                        techCostUpgrade.ion,
                         spendableResources
                     )
                 }
+                requirementsMet={digitalRequirements(labLevel)}
             />
             <ResearchBox
                 img={beamImg}
                 title="Beam Technology"
                 functionCallName="beamTechnology"
                 level={techLevels?.beam}
-                costUpdate={TechCostUpgrade?.beam}
+                costUpdate={techCostUpgrade?.beam}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.beam,
+                        techCostUpgrade.beam,
                         spendableResources
                     )
                 }
+                requirementsMet={beamTechRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 img={ionImg}
                 title="Ion Systems"
                 functionCallName="ionSystems"
                 level={techLevels?.ion}
-                costUpdate={TechCostUpgrade?.ion}
+                costUpdate={techCostUpgrade?.ion}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.ion,
+                        techCostUpgrade.ion,
                         spendableResources
                     )
                 }
+                requirementsMet={ionRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 img={plasmaImg}
                 title="Plasma Engineering"
                 functionCallName="plasmaEngineering"
                 level={techLevels?.plasma}
-                costUpdate={TechCostUpgrade?.plasma}
+                costUpdate={techCostUpgrade?.plasma}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.plasma,
+                        techCostUpgrade.plasma,
                         spendableResources
                     )
                 }
+                requirementsMet={plasmaTechRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 img={spacetimeImg}
                 title="Spacetime Warp"
                 functionCallName="spacetimeWarp"
                 level={techLevels?.spacetime}
-                costUpdate={TechCostUpgrade?.spacetime}
+                costUpdate={techCostUpgrade?.spacetime}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.spacetime,
+                        techCostUpgrade.spacetime,
                         spendableResources
                     )
                 }
@@ -125,27 +144,28 @@ export const ResearchTabPanel = ({
                 title="Combustion Drive"
                 functionCallName="combustionDrive"
                 level={techLevels?.combustion}
-                costUpdate={TechCostUpgrade?.combustion}
+                costUpdate={techCostUpgrade?.combustion}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.combustion,
+                        techCostUpgrade.combustion,
                         spendableResources
                     )
                 }
+                requirementsMet={combustionRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 img={thrustImg}
                 title="Thrust Propulsion"
                 functionCallName="thrustPropulsion"
                 level={techLevels?.thrust}
-                costUpdate={TechCostUpgrade?.thrust}
+                costUpdate={techCostUpgrade?.thrust}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.thrust,
+                        techCostUpgrade.thrust,
                         spendableResources
                     )
                 }
@@ -155,42 +175,44 @@ export const ResearchTabPanel = ({
                 title="Warp Drive"
                 functionCallName="warpDrive"
                 level={techLevels?.warp}
-                costUpdate={TechCostUpgrade?.warp}
+                costUpdate={techCostUpgrade?.warp}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.warp,
+                        techCostUpgrade.warp,
                         spendableResources
                     )
                 }
+                requirementsMet={warpRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 img={armourImg}
                 title="Armour Innovation"
                 functionCallName="armourInnovation"
                 level={techLevels?.armour}
-                costUpdate={TechCostUpgrade?.armour}
+                costUpdate={techCostUpgrade?.armour}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.armour,
+                        techCostUpgrade.armour,
                         spendableResources
                     )
                 }
+                requirementsMet={armourRequirements(labLevel)}
             />
             <ResearchBox
                 img={weaponsImg}
                 title="Weapons Development"
                 functionCallName="weaponsDevelopment"
                 level={techLevels?.weapons}
-                costUpdate={TechCostUpgrade?.weapons}
+                costUpdate={techCostUpgrade?.weapons}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.weapons,
+                        techCostUpgrade.weapons,
                         spendableResources
                     )
                 }
@@ -200,15 +222,16 @@ export const ResearchTabPanel = ({
                 title="Shields Technology"
                 functionCallName="shieldTech"
                 level={techLevels?.shielding}
-                costUpdate={TechCostUpgrade?.shielding}
+                costUpdate={techCostUpgrade?.shielding}
                 hasEnoughResources={
                     spendableResources &&
-                    TechCostUpgrade &&
+                    techCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.weapons,
+                        techCostUpgrade.weapons,
                         spendableResources
                     )
                 }
+                requirementsMet={shieldRequirements(labLevel, techLevels)}
             />
         </StyledTabPanel>
     );

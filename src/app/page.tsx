@@ -12,11 +12,13 @@ import {
     useAccount,
 } from "wagmi";
 import { arbitrum, mantle, arbitrumGoerli } from "wagmi/chains";
-import { InjectedConnector } from "wagmi/connectors/injected";
+import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { AppWrapper } from "./components/AppWrapper";
 import { FixedGlobalStyle, ThemedGlobalStyle } from "./theme";
 import AuthController from "./components/AuthController";
+
+const walletConnectProjectId = "336bc4da43527c0440d48460467a7e4c";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [arbitrumGoerli],
@@ -30,11 +32,10 @@ export const config = createConfig({
     autoConnect: true,
     connectors: [
         new MetaMaskConnector({ chains }),
-        new InjectedConnector({
+        new WalletConnectConnector({
             chains,
             options: {
-                name: "Injected",
-                shimDisconnect: true,
+                projectId: walletConnectProjectId,
             },
         }),
     ],

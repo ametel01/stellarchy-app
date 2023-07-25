@@ -23,7 +23,7 @@ const PlanetImageWrapper = styled(RowCentered)`
     border-radius: 35px;
     background: #192125;
     overflow: hidden;
-    float: left;
+    float left;
 `;
 const MainContainer = styled(RowCentered)`
     gap: 48px;

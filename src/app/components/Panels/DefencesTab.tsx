@@ -1,22 +1,33 @@
 import { StyledTabPanel } from "./styleds";
-import { DefenceCost, DefenceLevels, Points } from "@/utils/types";
+import { DefenceCost, DefenceLevels, Points, TechLevels } from "@/utils/types";
 import DefencesBox from "@/components/Boxes/DefencesBox";
-import { calculEnoughResources } from "@/utils";
+import {
+    calculEnoughResources,
+    blasterRequirements,
+    beamRequirements,
+    astralRequirements,
+    plasmaTechRequirements,
+    plasmaRequirements,
+} from "@/utils";
 import blasterImg from "@/assets/defences/blaster.png";
 import beamImg from "@/assets/defences/beam.png";
-import astralLauncherImg from "@/assets/defences/astral-launcher.png";
-import plasmaImg from "@/assets/defences/plasma-projector.png";
+import astralLauncherImg from "@/assets/defences/astral.png";
+import plasmaImg from "@/assets/defences/plasma.png";
 
 interface Props {
     spendableResources?: Points;
     defenceLevels?: DefenceLevels;
     defenceCost?: DefenceCost;
+    dockyardLevel?: number;
+    techLevels: TechLevels;
 }
 
 export const DefenceTabPanel = ({
     spendableResources,
     defenceLevels,
     defenceCost,
+    dockyardLevel,
+    techLevels,
     ...rest
 }: Props) => {
     return (
@@ -35,6 +46,7 @@ export const DefenceTabPanel = ({
                         spendableResources
                     )
                 }
+                requirementsMet={blasterRequirements(dockyardLevel)}
             />
             <DefencesBox
                 img={beamImg}
@@ -47,6 +59,7 @@ export const DefenceTabPanel = ({
                     defenceCost &&
                     calculEnoughResources(defenceCost.beam, spendableResources)
                 }
+                requirementsMet={beamRequirements(dockyardLevel, techLevels)}
             />
             <DefencesBox
                 img={astralLauncherImg}
@@ -62,6 +75,7 @@ export const DefenceTabPanel = ({
                         spendableResources
                     )
                 }
+                requirementsMet={astralRequirements(dockyardLevel, techLevels)}
             />
             <DefencesBox
                 img={plasmaImg}
@@ -77,6 +91,7 @@ export const DefenceTabPanel = ({
                         spendableResources
                     )
                 }
+                requirementsMet={plasmaRequirements(dockyardLevel, techLevels)}
             />
         </StyledTabPanel>
     );

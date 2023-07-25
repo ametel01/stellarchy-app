@@ -101,7 +101,7 @@ export const CompoundsTabPanel = ({
             <CompoundsBox
                 img={dockyardImg}
                 title="Dockyard"
-                functionCallName="lab"
+                functionCallName="dockyard"
                 level={compoundsLevels?.dockyard}
                 costUpdate={compoundsCostUpgrade?.dockyard}
                 hasEnoughResources={

@@ -1,90 +1,22 @@
-import styled from "styled-components";
+import {
+    Box,
+    SubBox,
+    Title,
+    InfoContainer,
+    ResourceContainer,
+    NumberContainer,
+    ResourceTitle,
+    ImageContainer,
+    ButtonContainer,
+} from "@/styles";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
-import { Clock } from "@/components/Icons/Clock";
 import { Coins } from "@/components/Icons/Coins";
 import { ButtonPrimary } from "@/components/Button";
 import Image from "next/legacy/image";
 import { numberWithCommas } from "@/utils";
 import plus from "@/assets/icons/Plus.svg";
-import Column from "@/components/Column";
 import React, { useMemo } from "react";
 import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
-
-const Box = styled.div<{ customcolor: string }>`
-    width: 100%;
-    max-height: 70px;
-    display: flex;
-    flex-direction: row;
-    //align-items: center;
-    //justify-content: space-between;
-    margin-bottom: 10px;
-    //padding: 10px;
-    border: 2px solid ${(props) => props.customcolor};
-    background-color: #151a1e;
-    border-radius: 4px;
-    overflow: hidden;
-`;
-
-const SubBox = styled.div`
-    width: 100%;
-    //max-height: 200px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-`;
-
-const Title = styled.div`
-    width: 130px;
-`;
-
-const InfoContainer = styled.div`
-    //width: 600px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
-`;
-const ResourceContainer = styled(Column)`
-    width: 50px;
-    text-align: left;
-    gap: 3px;
-`;
-
-const NumberContainer = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    gap: 4px;
-    align-items: center;
-    font-size: 14px;
-    line-height: 18.2px;
-`;
-
-const ResourceTitle = styled.div`
-    color: grey;
-    font-weight: 700;
-    font-size: 12px;
-    @media (max-width: 1300px) {
-        display: none;
-    }
-`;
-
-const ImageContainer = styled.div`
-    width: 70px;
-`;
-
-const ButtonContainer = styled.div`
-    max-width: 300px;
-    min-width: 195px;
-    :hover {
-        filter: brightness(0.75);
-    }
-    @media (min-width: 1000px) {
-        width: 300px;
-    }
-`;
 
 interface Props {
     img: any;
@@ -93,9 +25,10 @@ interface Props {
     level?: number;
     costUpdate?: { steel: number; quartz: number; tritium: number };
     hasEnoughResources?: boolean;
+    requirementsMet?: boolean;
 }
 
-type ButtonState = "valid" | "noResource";
+type ButtonState = "valid" | "noResource" | "noRequirements";
 
 interface ButtonArrayStates {
     state: ButtonState;
@@ -108,10 +41,11 @@ interface ButtonArrayStates {
 const ResearchBox = ({
     img,
     title,
-    level,
-    hasEnoughResources,
-    costUpdate,
     functionCallName,
+    level,
+    costUpdate,
+    hasEnoughResources,
+    requirementsMet,
 }: Props) => {
     const upgrade = useUpgrade(functionCallName);
     const steel = costUpdate ? numberWithCommas(costUpdate.steel) : null;
@@ -119,12 +53,14 @@ const ResearchBox = ({
     const tritium = costUpdate ? numberWithCommas(costUpdate.tritium) : null;
 
     const buttonState = useMemo((): ButtonState => {
-        if (!hasEnoughResources) {
+        if (!requirementsMet) {
+            return "noRequirements";
+        } else if (!hasEnoughResources) {
             return "noResource";
         }
 
         return "valid";
-    }, [hasEnoughResources]);
+    }, [hasEnoughResources, requirementsMet]);
 
     const statesButton: ButtonArrayStates[] = [
         {
@@ -158,11 +94,29 @@ const ResearchBox = ({
                 />
             ),
         },
+        {
+            state: "noRequirements",
+            title: "No Requirements",
+            color: "#524c4c",
+            icon: (
+                <Image
+                    src={plus}
+                    alt="plus"
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                    }}
+                />
+            ),
+        },
     ];
 
     const actualButtonState = statesButton.find(
         (state) => state.state === buttonState
     );
+
+    const hasRequirements = actualButtonState?.state === "noRequirements";
+
     const isDisabled = actualButtonState?.state === "noResource";
 
     return (
@@ -211,14 +165,15 @@ const ResearchBox = ({
                 </InfoContainer>
                 <ButtonContainer>
                     <ButtonPrimary
-                        // customcolor={
-                        //     isDisabled ? undefined : actualButtonState?.color
-                        // }
+                        customColor={
+                            isDisabled ? undefined : actualButtonState?.color
+                        }
                         onClick={() =>
                             actualButtonState?.callback &&
                             actualButtonState.callback()
                         }
                         disabled={isDisabled}
+                        requirements={hasRequirements}
                     >
                         <div
                             style={{
