@@ -1,4 +1,3 @@
-"@ts-nocheck";
 import styled from "styled-components";
 import { Button as RebassButton, ButtonProps } from "rebass/styled-components";
 import { darken, lighten } from "polished";
@@ -18,7 +17,7 @@ export const Base = styled(RebassButton)<{
     line-height: 130%;
     font-weight: 500;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 8px;
     border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
     outline: none;
     /* border: 1px solid transparent; */
@@ -48,7 +47,7 @@ export const ButtonPrimary = styled(Base)`
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: uppercase;
-    :hover,
+    // :hover,
     :focus,
     :active {
         background: ${(props: { customColor?: string }) =>

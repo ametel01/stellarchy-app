@@ -15,8 +15,8 @@ import atom from "@/assets/icons/Atom.svg";
 import bolt from "@/assets/icons/Bolt.svg";
 import { GAMEADDRESS, STERC721ADDRESS } from "@/constants";
 import { E18ToNumber, dataToNumber, numberWithCommas } from "@/utils";
-import { useAccount, useContractRead } from "wagmi";
-import { QUARTZ_ADDRESS, STEEL_ADDRESS, TRITIUM_ADDRESS } from "@/constants";
+import { useAccount, useConnect, useContractRead } from "wagmi";
+import { QUARTZADDRESS, STEELADDRESS, TRITIUMADDRESS } from "@/constants";
 import { GAMEABI } from "@/abi/stellarchy";
 import { ERC721ABI } from "@/abi/erc721";
 
@@ -42,8 +42,7 @@ const Container = styled.div`
 `;
 
 interface Props {
-    spendable?: string;
-    collectible?: string;
+    total?: string;
     img: any;
     iconImg: any;
     title: string;
@@ -58,7 +57,6 @@ const TotalResourceText = styled.div`
 
 const TotalResourceContainer = styled.div`
     display: flex;
-    font-size: 20;
 `;
 
 const TotalResourceWrapper = styled.div`
@@ -107,10 +105,10 @@ const Energy = ({ available, img, iconImg, title }: Props) => {
                             objectFit: "contain",
                         }}
                     />
-                    <p>
+                    <div>
                         <font size="1">available</font>
                         <TotalResourceText>{available}</TotalResourceText>
-                    </p>
+                    </div>
                 </TotalResourceContainer>
             </TotalResourceWrapper>
         </Container>
@@ -172,12 +170,12 @@ const Resource = ({
                             objectFit: "contain",
                         }}
                     />
-                    <p>
+                    <div>
                         <font size="1">Spendable</font>
                         <TotalResourceText>{spendable}</TotalResourceText>
                         <font size="1">Collectible</font>
                         <TotalResourceText>{collectible}</TotalResourceText>
-                    </p>
+                    </div>
                 </TotalResourceContainer>
             </TotalResourceWrapper>
         </Container>
@@ -188,7 +186,7 @@ const ResourcesContainer = () => {
     const { address } = useAccount();
 
     const { data: planetId } = useContractRead({
-        address: STEEL_ADDRESS,
+        address: STERC721ADDRESS,
         abi: ERC721ABI,
         functionName: "tokenOf",
         args: [address],
@@ -205,20 +203,22 @@ const ResourcesContainer = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getCollectibleResources",
+        args: [planetId],
     });
 
     const { data: energy } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getEnergyAvailable",
+        args: [planetId],
     });
 
     const spendableResources = useMemo(() => {
         if (spendable) {
             return {
-                steel: numberWithCommas(E18ToNumber(spendable["steel"])),
-                quartz: numberWithCommas(E18ToNumber(spendable["quartz"])),
-                tritium: numberWithCommas(E18ToNumber(spendable["tritium"])),
+                steel: numberWithCommas(spendable["steel"]),
+                quartz: numberWithCommas(spendable["quartz"]),
+                tritium: numberWithCommas(spendable["tritium"]),
             };
         }
     }, [spendable]);
@@ -226,9 +226,9 @@ const ResourcesContainer = () => {
     const collectibleResources = useMemo(() => {
         if (collectible) {
             return {
-                steel: numberWithCommas(E18ToNumber(collectible["steel"])),
-                quartz: numberWithCommas(E18ToNumber(collectible["quartz"])),
-                tritium: numberWithCommas(E18ToNumber(collectible["tritium"])),
+                steel: numberWithCommas(collectible["steel"]),
+                quartz: numberWithCommas(collectible["quartz"]),
+                tritium: numberWithCommas(collectible["tritium"]),
             };
         }
     }, [collectible]);
@@ -245,7 +245,7 @@ const ResourcesContainer = () => {
         <div>
             <Resource
                 title="Steel"
-                address={STEEL_ADDRESS}
+                address={STEELADDRESS}
                 img={ironImg}
                 iconImg={coins}
                 spendable={spendableResources?.steel}
@@ -253,7 +253,7 @@ const ResourcesContainer = () => {
             />
             <Resource
                 title="Quartz"
-                address={QUARTZ_ADDRESS}
+                address={QUARTZADDRESS}
                 img={quartzImg}
                 iconImg={gem}
                 spendable={spendableResources?.quartz}
@@ -261,7 +261,7 @@ const ResourcesContainer = () => {
             />
             <Resource
                 title="Tritium"
-                address={TRITIUM_ADDRESS}
+                address={TRITIUMADDRESS}
                 img={tritiumImg}
                 iconImg={atom}
                 spendable={spendableResources?.tritium}

@@ -257,7 +257,13 @@ export const GAMEABI = [
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+        ],
         name: "getCollectibleResources",
         outputs: [
             {
@@ -629,13 +635,19 @@ export const GAMEABI = [
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+        ],
         name: "getEnergyAvailable",
         outputs: [
             {
-                internalType: "uint256",
-                name: "energy",
-                type: "uint256",
+                internalType: "int256",
+                name: "",
+                type: "int256",
             },
         ],
         stateMutability: "view",

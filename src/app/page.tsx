@@ -20,7 +20,10 @@ import AuthController from "./components/AuthController";
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [arbitrumGoerli],
-    [alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
+    [
+        alchemyProvider({ apiKey: "AU0WXB7ZH8TqK2iMytYhnG3LYxN8s7zb" }),
+        publicProvider(),
+    ]
 );
 
 export const config = createConfig({

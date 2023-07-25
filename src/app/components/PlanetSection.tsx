@@ -18,11 +18,12 @@ import { STERC721ADDRESS } from "@/constants";
 import useGetTokenId from "./hooks/useGetTokenId";
 
 const PlanetImageWrapper = styled(RowCentered)`
-    height: 150px;
-    width: 150px;
-    border-radius: 20px;
+    height: 250px;
+    width: 250px;
+    border-radius: 35px;
     background: #192125;
     overflow: hidden;
+    float: left;
 `;
 const MainContainer = styled(RowCentered)`
     gap: 48px;
@@ -31,7 +32,8 @@ const MainContainer = styled(RowCentered)`
 const PlanetInfoContainer = styled(Column)`
     gap: 6px;
     color: white;
-    width: 352px;
+    width: 252px;
+    float: left;
 `;
 
 const PlanetInfoRow = styled(RowBetween)`
@@ -69,9 +71,9 @@ function hex2a(hex: string) {
     return str;
 }
 
-const PlanetImage = ({ planetId }: { planetId: any }) => {
+const PlanetImage = () => {
     const ipfsUrl =
-        "https://scarlet-biological-chipmunk-168.mypinata.cloud/ipfs/QmTUUfE2UKDSUdqFL67WRvQMJjEHsJVXyopnc5UiGwgQNP/";
+        "https://scarlet-biological-chipmunk-168.mypinata.cloud/ipfs/Qmd5j1gnUBtbfpHCMnWDE8HRHu1G3ghuXSxjKW2pzy3PAk/";
     const [metadata, setMetadata] = useState<any>();
 
     const { address } = useAccount();
@@ -80,12 +82,12 @@ const PlanetImage = ({ planetId }: { planetId: any }) => {
         address: STERC721ADDRESS,
         abi: ERC721ABI,
         functionName: "tokenOf",
-        args: [address]
-    })
+        args: [address],
+    });
 
     useEffect(() => {
         if (address && !metadata) {
-            const url = `${ipfsUrl}${tokenId}${".json"}`;
+            const url = `${ipfsUrl}${Number(tokenId)}${".json"}`;
 
             axios
                 .get(url)
@@ -98,7 +100,7 @@ const PlanetImage = ({ planetId }: { planetId: any }) => {
 
     // const imgUrl = (ipfs: string) => `${ipfsUrl}${ipfs.replace("ipfs/", "")}`;
     const imgUrl =
-        "https://scarlet-biological-chipmunk-168.mypinata.cloud/ipfs/QmTUUfE2UKDSUdqFL67WRvQMJjEHsJVXyopnc5UiGwgQNP";
+        "https://scarlet-biological-chipmunk-168.mypinata.cloud/ipfs/QmbmsALmobAaTKDLVmPyC1j1Z1nABn7MfNCNXbYvFMrx3m";
 
     const imgId = useMemo(() => {
         if (tokenId != undefined) {
@@ -107,19 +109,20 @@ const PlanetImage = ({ planetId }: { planetId: any }) => {
         return null;
     }, [tokenId]);
 
-    console.log("imageId", imgId);
-
     const findAttribute = (name: string) =>
         metadata?.attributes.find(({ trait_type }) => trait_type === name)
             ?.value || "-";
+
+    // const findImage = () => metadata?.image || "-";
+
     return (
         <>
             <PlanetImageWrapper>
                 {imgId ? (
                     <Image
                         src={`${imgUrl}/${imgId}.png`}
-                        width={150}
-                        height={152}
+                        width={250}
+                        height={252}
                         alt={"planet"}
                         style={{
                             maxWidth: "100%",
@@ -163,7 +166,7 @@ const PlanetImage = ({ planetId }: { planetId: any }) => {
 
 export const PlanetSection: FC = () => {
     const { address } = useAccount();
-    
+
     const { data } = useGetTokenId(address);
 
     const planetId = Number(data) && Number(data); // TODO: check the return value of read call and modify this line accordingly;
@@ -171,7 +174,7 @@ export const PlanetSection: FC = () => {
     return (
         <RowCentered>
             <MainContainer>
-                <PlanetImage planetId={planetId} />
+                <PlanetImage />
             </MainContainer>
         </RowCentered>
     );

@@ -1,4 +1,4 @@
-import { StyledTabPanel } from "../Panels/styleds";
+import { StyledTabPanel } from "./styleds";
 import steelImg from "@/assets/compounds/steel-mine.png";
 import quartzImg from "@/assets/compounds/quartz-mine.png";
 import tritiumImg from "@/assets/compounds/tritium-mine.png";

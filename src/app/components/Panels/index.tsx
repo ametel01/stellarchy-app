@@ -21,11 +21,10 @@ import { useAccount, useContractRead } from "wagmi";
 import { GAMEADDRESS, STERC721ADDRESS } from "@/constants";
 import { ERC721ABI } from "@/abi/erc721";
 import { GAMEABI } from "@/abi/stellarchy";
-import { CompoundsTabPanel } from "../Icons/CompoundsTab";
+import { CompoundsTabPanel } from "./CompoundsTab";
 
 export const ResourcesSection: FC = () => {
     const { address: account } = useAccount();
-    console.log(account);
 
     const { data: planetId } = useContractRead({
         address: STERC721ADDRESS,
@@ -114,9 +113,9 @@ export const ResourcesSection: FC = () => {
     const planetResources = useMemo(() => {
         if (spendableResources) {
             return {
-                steel: E18ToNumber(spendableResources["steel"]),
-                quartz: E18ToNumber(spendableResources["quartz"]),
-                tritium: E18ToNumber(spendableResources["tritium"]),
+                steel: dataToNumber(spendableResources["steel"]),
+                quartz: dataToNumber(spendableResources["quartz"]),
+                tritium: dataToNumber(spendableResources["tritium"]),
                 energy: Number(energyAvailable),
             };
         }
@@ -243,10 +242,10 @@ export const ResourcesSection: FC = () => {
     const planetDefencesLevels = useMemo(() => {
         if (defencesLevels) {
             return {
-                blaster: dataToNumber(defencesLevels),
-                beam: dataToNumber(defencesLevels),
-                astral: dataToNumber(defencesLevels),
-                plasma: dataToNumber(defencesLevels),
+                blaster: dataToNumber(defencesLevels["blaster"]),
+                beam: dataToNumber(defencesLevels["beam"]),
+                astral: dataToNumber(defencesLevels["astralLauncher"]),
+                plasma: dataToNumber(defencesLevels["plasmaProjector"]),
             };
         }
     }, [defencesLevels]);
@@ -255,24 +254,36 @@ export const ResourcesSection: FC = () => {
         if (defencesCost) {
             return {
                 blaster: {
-                    steel: dataToNumber(defencesCost),
-                    quartz: dataToNumber(defencesCost),
-                    tritium: dataToNumber(defencesCost),
+                    steel: dataToNumber(defencesCost["blaster"]["steel"]),
+                    quartz: dataToNumber(defencesCost["blaster"]["quartz"]),
+                    tritium: dataToNumber(defencesCost["blaster"]["tritium"]),
                 },
                 beam: {
-                    steel: dataToNumber(defencesCost),
-                    quartz: dataToNumber(defencesCost),
-                    tritium: dataToNumber(defencesCost),
+                    steel: dataToNumber(defencesCost["beam"]["steel"]),
+                    quartz: dataToNumber(defencesCost["beam"]["quartz"]),
+                    tritium: dataToNumber(defencesCost["beam"]["tritium"]),
                 },
                 astral: {
-                    steel: dataToNumber(defencesCost),
-                    quartz: dataToNumber(defencesCost),
-                    tritium: dataToNumber(defencesCost),
+                    steel: dataToNumber(
+                        defencesCost["astralLauncher"]["steel"]
+                    ),
+                    quartz: dataToNumber(
+                        defencesCost["astralLauncher"]["quartz"]
+                    ),
+                    tritium: dataToNumber(
+                        defencesCost["astralLauncher"]["tritium"]
+                    ),
                 },
                 plasma: {
-                    steel: dataToNumber(defencesCost),
-                    quartz: dataToNumber(defencesCost),
-                    tritium: dataToNumber(defencesCost),
+                    steel: dataToNumber(
+                        defencesCost["plasmaProjector"]["steel"]
+                    ),
+                    quartz: dataToNumber(
+                        defencesCost["plasmaProjector"]["quartz"]
+                    ),
+                    tritium: dataToNumber(
+                        defencesCost["plasmaProjector"]["tritium"]
+                    ),
                 },
             };
         }
@@ -281,18 +292,18 @@ export const ResourcesSection: FC = () => {
     const planetTechLevels = useMemo(() => {
         if (techLevels) {
             return {
-                armour: dataToNumber(techLevels),
-                combustion: dataToNumber(techLevels),
-                computer: dataToNumber(techLevels),
-                energy: dataToNumber(techLevels),
-                warp: dataToNumber(techLevels),
-                spacetime: dataToNumber(techLevels),
-                thrust: dataToNumber(techLevels),
-                ion: dataToNumber(techLevels),
-                beam: dataToNumber(techLevels),
-                plasma: dataToNumber(techLevels),
-                shielding: dataToNumber(techLevels),
-                weapons: dataToNumber(techLevels),
+                armour: dataToNumber(techLevels["armourInnovation"]),
+                combustion: dataToNumber(techLevels["combustiveDrive"]),
+                computer: dataToNumber(techLevels["digitalSystems"]),
+                energy: dataToNumber(techLevels["energyInnovation"]),
+                warp: dataToNumber(techLevels["warpDrive"]),
+                spacetime: dataToNumber(techLevels["spacetimeWarp"]),
+                thrust: dataToNumber(techLevels["thrustPropulsion"]),
+                ion: dataToNumber(techLevels["ionSystems"]),
+                beam: dataToNumber(techLevels["beamTechnology"]),
+                plasma: dataToNumber(techLevels["plasmaEngineering"]),
+                shielding: dataToNumber(techLevels["shieldTech"]),
+                weapons: dataToNumber(techLevels["armsDevelopment"]),
             };
         }
     }, [techLevels]);
@@ -301,64 +312,88 @@ export const ResourcesSection: FC = () => {
         if (techCost) {
             return {
                 armour: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["armourInnovation"]["steel"]),
+                    quartz: dataToNumber(
+                        techCost["armourInnovation"]["quartz"]
+                    ),
+                    tritium: dataToNumber(
+                        techCost["armourInnovation"]["tritium"]
+                    ),
                 },
                 combustion: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["combustiveDrive"]["steel"]),
+                    quartz: dataToNumber(techCost["combustiveDrive"]["quartz"]),
+                    tritium: dataToNumber(
+                        techCost["combustiveDrive"]["tritium"]
+                    ),
                 },
                 computer: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["digitalSystems"]["steel"]),
+                    quartz: dataToNumber(techCost["digitalSystems"]["quartz"]),
+                    tritium: dataToNumber(
+                        techCost["digitalSystems"]["tritium"]
+                    ),
                 },
                 energy: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["energyInnovation"]["steel"]),
+                    quartz: dataToNumber(
+                        techCost["energyInnovation"]["quartz"]
+                    ),
+                    tritium: dataToNumber(
+                        techCost["energyInnovation"]["tritium"]
+                    ),
                 },
                 warp: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["warpDrive"]["steel"]),
+                    quartz: dataToNumber(techCost["warpDrive"]["quartz"]),
+                    tritium: dataToNumber(techCost["warpDrive"]["tritium"]),
                 },
                 spacetime: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["spacetimeWarp"]["steel"]),
+                    quartz: dataToNumber(techCost["spacetimeWarp"]["quartz"]),
+                    tritium: dataToNumber(techCost["spacetimeWarp"]["tritium"]),
                 },
                 thrust: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["thrustPropulsion"]["steel"]),
+                    quartz: dataToNumber(
+                        techCost["thrustPropulsion"]["quartz"]
+                    ),
+                    tritium: dataToNumber(
+                        techCost["thrustPropulsion"]["tritium"]
+                    ),
                 },
                 ion: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["ionSystems"]["steel"]),
+                    quartz: dataToNumber(techCost["ionSystems"]["quartz"]),
+                    tritium: dataToNumber(techCost["ionSystems"]["tritium"]),
                 },
                 beam: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["beamTechnology"]["steel"]),
+                    quartz: dataToNumber(techCost["beamTechnology"]["quartz"]),
+                    tritium: dataToNumber(
+                        techCost["beamTechnology"]["tritium"]
+                    ),
                 },
                 plasma: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["plasmaEngineering"]["steel"]),
+                    quartz: dataToNumber(
+                        techCost["plasmaEngineering"]["quartz"]
+                    ),
+                    tritium: dataToNumber(
+                        techCost["plasmaEngineering"]["tritium"]
+                    ),
                 },
                 shielding: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["shieldTech"]["steel"]),
+                    quartz: dataToNumber(techCost["shieldTech"]["quartz"]),
+                    tritium: dataToNumber(techCost["shieldTech"]["tritium"]),
                 },
                 weapons: {
-                    steel: dataToNumber(techCost),
-                    quartz: dataToNumber(techCost),
-                    tritium: dataToNumber(techCost),
+                    steel: dataToNumber(techCost["armsDevelopment"]["steel"]),
+                    quartz: dataToNumber(techCost["armsDevelopment"]["quartz"]),
+                    tritium: dataToNumber(
+                        techCost["armsDevelopment"]["tritium"]
+                    ),
                 },
             };
         }

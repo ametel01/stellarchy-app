@@ -5,11 +5,11 @@ import nogame from "@/assets/stellarchy-logo.png";
 import trophy from "@/assets/icons/Trophy.svg";
 import ranking from "@/assets/icons/Ranking.svg";
 import { useMemo } from "react";
-import { dataToNumber } from "@/utils";
+import { dataToNumber, numberWithCommas } from "@/utils";
 import BigNumber from "bignumber.js";
 import { TrophyIcon } from "./Icons/Trophy";
 import { useAccount, useContractRead } from "wagmi";
-import { GAMEADDRESS,STERC721ADDRESS } from "@/constants";
+import { GAMEADDRESS, STERC721ADDRESS } from "@/constants";
 import { GAMEABI } from "@/abi/stellarchy";
 import { ERC721ABI } from "@/abi/erc721";
 
@@ -18,7 +18,7 @@ const LogoContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 16px 24px 24px;
+    padding: 16px 18px 18px;
     gap: 16px;
 `;
 
@@ -55,23 +55,27 @@ const TitleContainer = styled.div`
 `;
 
 const LogoAndRankContainer = ({ account }) => {
-
     const { data: planetId } = useContractRead({
         address: STERC721ADDRESS,
         abi: ERC721ABI,
+        functionName: "tokenOf",
         args: [account],
     });
-    const { data } = useContractRead({
+
+    const { data: points } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
+        functionName: "getPlanetPoints",
         args: [planetId],
     });
 
-    const points = useMemo(() => {
-        if (data) {
-            return dataToNumber(data);
+    const score = useMemo(() => {
+        if (points) {
+            return numberWithCommas(Number(points));
         }
-    }, [data]);
+    }, [points]);
+
+    console.log(Number(planetId));
 
     return (
         <LogoContainer>
@@ -92,7 +96,7 @@ const LogoAndRankContainer = ({ account }) => {
                         <TrophyIcon />
                         <TitleContainer>Score</TitleContainer>
                     </div>
-                    {points ?? "N/A"}
+                    {score}
                 </RankLineContainer>
             </RankContainer>
         </LogoContainer>

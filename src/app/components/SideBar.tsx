@@ -16,21 +16,15 @@ const BodyContainer = styled.div`
 
 const SideBar = () => {
     const { address: account } = useAccount();
-    console.log("sidebar: ", account);
     const { disconnect } = useDisconnect();
 
     return (
-        <WagmiConfig config={config}>
-            <BodyContainer>
-                <WalletHeader
-                    account={account}
-                    disconnect={() => disconnect()}
-                />
-                <LogoAndRankContainer account={account} />
-                <ResourcesContainer />
-                <CollectResources />
-            </BodyContainer>
-        </WagmiConfig>
+        <BodyContainer>
+            <WalletHeader account={account} disconnect={() => disconnect()} />
+            <LogoAndRankContainer account={account} />
+            <ResourcesContainer />
+            <CollectResources />
+        </BodyContainer>
     );
 };
 

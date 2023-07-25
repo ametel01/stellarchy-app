@@ -42,9 +42,7 @@ const SubBodyContainer = styled.section<{ border?: boolean }>`
         `}
 `;
 
-
 export default function Dashboard() {
-    console.log("DASH-BOARD");
     return (
         <WagmiConfig config={config}>
             <MainContainer>

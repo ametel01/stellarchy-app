@@ -4,16 +4,15 @@ import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
 
 import { publicProvider } from 'wagmi/providers/public'
 
 const walletConnectProjectId = '336bc4da43527c0440d48460467a7e4c'
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [arbitrum, ...(process.env.NODE_ENV === 'development' ? [arbitrumGoerli] : [])],
-  [
-    publicProvider(),
-  ],
+const { chains, publicClient } = configureChains(
+  [arbitrumGoerli, arbitrum],
+  [publicProvider()],
 )
 
 export const config = createConfig({
@@ -26,12 +25,6 @@ export const config = createConfig({
         appName: 'wagmi',
       },
     }),
-    new WalletConnectConnector({
-      chains,
-      options: {
-        projectId: walletConnectProjectId,
-      },
-    }),
     new InjectedConnector({
       chains,
       options: {
@@ -41,5 +34,4 @@ export const config = createConfig({
     }),
   ],
   publicClient,
-  webSocketPublicClient,
 })

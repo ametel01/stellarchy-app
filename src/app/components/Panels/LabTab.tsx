@@ -3,17 +3,18 @@ import { useState } from "react";
 import { TechCost, Points, TechLevels } from "@/utils/types";
 import ResearchBox from "../Boxes/ResearchBox";
 import { calculEnoughResources } from "@/utils";
-import armourImg from "@/assets/techs/armour-tech.png";
-import beamImg from "@/assets/techs/beam-tech.png";
-import ionImg from "@/assets/techs/ion-tech.png";
-import plasmaImg from "@/assets/techs/plasma-tech.png";
-import spacetimeImg from "@/assets/techs/spacetime-tech.png";
-import warpEnginImg from "@/assets/techs/warp-engine.png";
-import combustionImg from "@/assets/techs/combust-engine.png";
-import thrustImg from "@/assets/techs/thrust-engine.png";
-import weaponsImg from "@/assets/techs/weapons-tech.png";
-import computerImg from "@/assets/techs/digi-sys.png";
-import shieldImg from "@/assets/techs/shield-tech.png";
+import armourImg from "@/assets/techs/armour.png";
+import beamImg from "@/assets/techs/laser.png";
+import ionImg from "@/assets/techs/ion.png";
+import plasmaImg from "@/assets/techs/plasma.png";
+import spacetimeImg from "@/assets/techs/spacetime.png";
+import warpEnginImg from "@/assets/techs/warp.png";
+import combustionImg from "@/assets/techs/combustion.png";
+import thrustImg from "@/assets/techs/thrust.png";
+import weaponsImg from "@/assets/techs/weapons.png";
+import computerImg from "@/assets/techs/computer.png";
+import shieldImg from "@/assets/techs/shield.png";
+import energyImg from "@/assets/techs/energy.png";
 
 interface Props {
     spendableResources?: Points;
@@ -30,22 +31,22 @@ export const ResearchTabPanel = ({
     return (
         <StyledTabPanel {...rest}>
             <ResearchBox
-                img={plasmaImg}
-                title="Plasma Engineering"
-                functionCallName="plasmaEngineering"
-                level={techLevels?.plasma}
-                costUpdate={TechCostUpgrade?.plasma}
+                img={energyImg}
+                title="Energy Innovation"
+                functionCallName="energyInnovation"
+                level={techLevels?.energy}
+                costUpdate={TechCostUpgrade?.energy}
                 hasEnoughResources={
                     spendableResources &&
                     TechCostUpgrade &&
                     calculEnoughResources(
-                        TechCostUpgrade.armour,
+                        TechCostUpgrade.energy,
                         spendableResources
                     )
                 }
             />
             <ResearchBox
-                img={combustionImg}
+                img={computerImg}
                 title="Digital Systems"
                 functionCallName="digitalSystems"
                 level={techLevels?.ion}
@@ -106,7 +107,7 @@ export const ResearchTabPanel = ({
             />
             <ResearchBox
                 img={spacetimeImg}
-                title="SpacetimeWarp"
+                title="Spacetime Warp"
                 functionCallName="spacetimeWarp"
                 level={techLevels?.spacetime}
                 costUpdate={TechCostUpgrade?.spacetime}

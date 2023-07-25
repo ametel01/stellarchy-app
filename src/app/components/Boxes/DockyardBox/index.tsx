@@ -10,7 +10,7 @@ import Column from "@/components/Column";
 import React, { useMemo, useState } from "react";
 import useBuild, { UnitType } from "@/components/hooks/useBuild";
 
-const Box = styled.div<{ customColor: string }>`
+const Box = styled.div<{ customcolor: string }>`
     width: 100%;
     max-height: 70px;
     display: flex;
@@ -19,7 +19,7 @@ const Box = styled.div<{ customColor: string }>`
     //justify-content: space-between;
     margin-bottom: 10px;
     //padding: 10px;
-    border: 2px solid ${(props) => props.customColor};
+    border: 2px solid ${(props) => props.customcolor};
     background-color: #151a1e;
     border-radius: 4px;
     overflow: hidden;
@@ -78,7 +78,9 @@ const ImageContainer = styled.div`
 const ButtonContainer = styled.div`
     max-width: 300px;
     min-width: 195px;
-
+    :hover {
+        filter: brightness(0.75);
+    }
     @media (min-width: 1000px) {
         width: 300px;
     }
@@ -138,27 +140,33 @@ const DockyardBox = ({
             state: "valid",
             title: "Upgrade",
             callback: build,
-            color: "#6cbd6a",
-            icon: <Image
-                src={plus}
-                alt="plus"
-                style={{
-                    maxWidth: "100%",
-                    height: "auto"
-                }} />,
+            color: "#295c28",
+            icon: (
+                <Image
+                    src={plus}
+                    alt="plus"
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                    }}
+                />
+            ),
         },
         {
             state: "noResource",
             title: "Need Resources",
             // callback: () => {},
             color: "#402F2C",
-            icon: <Image
-                src={plus}
-                alt="plus"
-                style={{
-                    maxWidth: "100%",
-                    height: "auto"
-                }} />,
+            icon: (
+                <Image
+                    src={plus}
+                    alt="plus"
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                    }}
+                />
+            ),
         },
     ];
 
@@ -169,15 +177,16 @@ const DockyardBox = ({
     const isDisabled = actualButtonState?.state === "noResource";
 
     return (
-        <Box customColor={actualButtonState?.color ?? "grey"}>
+        <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
                 <Image
                     src={img}
                     alt={title}
                     style={{
                         maxWidth: "100%",
-                        height: "auto"
-                    }} />
+                        height: "auto",
+                    }}
+                />
             </ImageContainer>
             <SubBox>
                 <Title>{title}</Title>

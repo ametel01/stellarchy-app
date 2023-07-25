@@ -12,6 +12,7 @@ import { RowCentered } from "./Row";
 // import SideBar from "@/components/SideBar"
 import { useAccount } from "wagmi";
 import SideBar from "./SideBar";
+import { GeneratePlanet } from "./hooks/useGeneratePlanet";
 
 const MainWrapper = styled(ColumnCenter)`
     height: 80vh;
@@ -19,7 +20,7 @@ const MainWrapper = styled(ColumnCenter)`
     gap: 16px;
 `;
 
-const SubText = styled.div`
+export const SubText = styled.div`
     color: #ffffff;
     font-weight: 300;
     font-size: 16px;
@@ -42,7 +43,6 @@ const GeneratePlanetWrapper = styled.div`
 `;
 
 interface AuthScreenProps {
-    generatePlanet: () => void;
     address?: string;
     loading: boolean;
     walletConnectLoading: boolean;
@@ -61,19 +61,12 @@ type GeneratePlanetViewProps = Omit<
 
 const AuthScreen = ({
     address,
-    generatePlanet,
     loading = true,
     walletConnectLoading,
     hasGeneratedPlanets = false,
 }: AuthScreenProps) => {
     if (address && !hasGeneratedPlanets) {
-        return (
-            <GeneratePlanetView
-                address={address}
-                loading={loading}
-                generatePlanet={generatePlanet}
-            />
-        );
+        return <GeneratePlanetView address={address} loading={loading} />;
     }
 
     return (
@@ -116,7 +109,6 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
 
 const GeneratePlanetView: FC<GeneratePlanetViewProps> = ({
     address,
-    generatePlanet,
     loading,
 }) => {
     return (
@@ -136,13 +128,7 @@ const GeneratePlanetView: FC<GeneratePlanetViewProps> = ({
                 <SubText>Ready for lift off!</SubText>
 
                 <div>
-                    {loading ? (
-                        <ButtonPrimary disabled>Loading...</ButtonPrimary>
-                    ) : (
-                        <ButtonPrimary onClick={() => generatePlanet()}>
-                            GENERATE PLANET
-                        </ButtonPrimary>
-                    )}
+                    <GeneratePlanet />
                 </div>
             </MainWrapper>
         </GeneratePlanetWrapper>

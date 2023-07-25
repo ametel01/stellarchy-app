@@ -3,13 +3,13 @@ import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
 import { ButtonPrimary } from "@/components/Button";
 import Image from "next/legacy/image";
-import useUpgrade, {ComponentType} from "@/components/hooks/useUpgrade";
+import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
 import plus from "@/assets/icons/Plus.svg";
 import Column from "@/components/Column";
 import React, { useMemo } from "react";
 import { numberWithCommas } from "@/utils";
 
-const Box = styled.div<{ customColor: string }>`
+const Box = styled.div<{ customcolor: string }>`
     width: 100%;
     max-height: 70px;
     display: flex;
@@ -18,7 +18,7 @@ const Box = styled.div<{ customColor: string }>`
     //justify-content: space-between;
     margin-bottom: 10px;
     //padding: 10px;
-    border: 2px solid ${(props) => props.customColor};
+    border: 2px solid ${(props) => props.customcolor};
     background-color: #151a1e;
     border-radius: 4px;
     overflow: hidden;
@@ -77,7 +77,9 @@ const ImageContainer = styled.div`
 const ButtonContainer = styled.div`
     max-width: 300px;
     min-width: 195px;
-
+    :hover {
+        filter: brightness(0.75);
+    }
     @media (min-width: 1000px) {
         width: 300px;
     }
@@ -134,27 +136,34 @@ const CompoundsBox = ({
             state: "valid",
             title: "Upgrade",
             callback: upgrade,
-            color: "#6cbd6a",
-            icon: <Image
-                src={plus}
-                alt="plus"
-                style={{
-                    maxWidth: "100%",
-                    height: "auto"
-                }} />,
+            // color: "#6cbd6a",
+            color: "#295c28",
+            icon: (
+                <Image
+                    src={plus}
+                    alt="plus"
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                    }}
+                />
+            ),
         },
         {
             state: "noResource",
             title: "Need Resources",
             // callback: () => {},
             color: "#402F2C",
-            icon: <Image
-                src={plus}
-                alt="plus"
-                style={{
-                    maxWidth: "100%",
-                    height: "auto"
-                }} />,
+            icon: (
+                <Image
+                    src={plus}
+                    alt="plus"
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                    }}
+                />
+            ),
         },
     ];
 
@@ -164,15 +173,16 @@ const CompoundsBox = ({
     const isDisabled = actualButtonState?.state === "noResource";
 
     return (
-        <Box customColor={actualButtonState?.color ?? "grey"}>
+        <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
                 <Image
                     src={img}
                     alt={title}
                     style={{
                         maxWidth: "100%",
-                        height: "auto"
-                    }} />
+                        height: "auto",
+                    }}
+                />
             </ImageContainer>
             <SubBox>
                 <Title>{title}</Title>
