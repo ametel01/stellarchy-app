@@ -1,16 +1,13 @@
 import styled from "styled-components";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
-import { Button } from "@mui/material";
 import Image from "next/legacy/image";
 import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
-import plus from "@/assets/icons/Plus.svg";
 import Column from "@/components/Column";
 import React, { useMemo } from "react";
 import { numberWithCommas } from "@/utils";
-import ThemeProvider from "@mui/material";
-import { createTheme } from "@mui/material/styles";
 import { ButtonUpgrade } from "@/components/ButtonMain";
+import ImagePopover from "@/components/modals";
 
 const Box = styled.div<{ customcolor: string }>`
     width: 100%;
@@ -157,14 +154,7 @@ const CompoundsBox = ({
     return (
         <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
-                <Image
-                    src={img}
-                    alt={title}
-                    style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                    }}
-                />
+                <ImagePopover image={img} title={title} />
             </ImageContainer>
             <SubBox>
                 <Title>{title}</Title>
