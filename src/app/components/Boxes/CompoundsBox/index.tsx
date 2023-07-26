@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
-import { ButtonPrimary } from "@/components/Button";
+import { Button } from "@mui/material";
 import Image from "next/legacy/image";
 import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
 import plus from "@/assets/icons/Plus.svg";
 import Column from "@/components/Column";
 import React, { useMemo } from "react";
 import { numberWithCommas } from "@/utils";
+import ThemeProvider from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { ButtonUpgrade } from "@/components/ButtonMain";
 
 const Box = styled.div<{ customcolor: string }>`
     width: 100%;
@@ -106,7 +109,7 @@ interface ButtonArrayStates {
     title: string;
     callback?: () => void;
     color?: string;
-    icon: React.ReactNode;
+    // icon: React.ReactNode;
 }
 
 const CompoundsBox = ({
@@ -118,6 +121,7 @@ const CompoundsBox = ({
     functionCallName,
 }: Props) => {
     const upgrade = useUpgrade(functionCallName);
+
     const steel = costUpdate ? numberWithCommas(costUpdate.steel) : null;
     const quartz = costUpdate ? numberWithCommas(costUpdate.quartz) : null;
     const tritium = costUpdate ? numberWithCommas(costUpdate.tritium) : null;
@@ -136,34 +140,12 @@ const CompoundsBox = ({
             state: "valid",
             title: "Upgrade",
             callback: upgrade,
-            // color: "#6cbd6a",
             color: "#295c28",
-            icon: (
-                <Image
-                    src={plus}
-                    alt="plus"
-                    style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                    }}
-                />
-            ),
         },
         {
             state: "noResource",
             title: "Need Resources",
-            // callback: () => {},
-            color: "#402F2C",
-            icon: (
-                <Image
-                    src={plus}
-                    alt="plus"
-                    style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                    }}
-                />
-            ),
+            color: "#e4c31b",
         },
     ];
 
@@ -224,24 +206,11 @@ const CompoundsBox = ({
                     </ResourceContainer>
                 </InfoContainer>
                 <ButtonContainer>
-                    <ButtonPrimary
-                        onClick={() => upgrade()}
+                    <ButtonUpgrade
+                        callback={upgrade}
                         disabled={isDisabled}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flex: 1,
-                                justifyContent: "center",
-                                flexDirection: "row",
-                            }}
-                        >
-                            <div style={{ width: 20, height: 20 }}>
-                                {actualButtonState?.icon}
-                            </div>
-                            {actualButtonState?.title}
-                        </div>
-                    </ButtonPrimary>
+                        noRequirements={false}
+                    />
                 </ButtonContainer>
             </SubBox>
         </Box>

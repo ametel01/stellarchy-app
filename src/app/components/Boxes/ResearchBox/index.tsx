@@ -11,7 +11,7 @@ import {
 } from "@/styles";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
-import { ButtonPrimary } from "@/components/Button";
+import { ButtonUpgrade } from "@/components/ButtonMain";
 import Image from "next/legacy/image";
 import { numberWithCommas } from "@/utils";
 import plus from "@/assets/icons/Plus.svg";
@@ -48,6 +48,7 @@ const ResearchBox = ({
     requirementsMet,
 }: Props) => {
     const upgrade = useUpgrade(functionCallName);
+
     const steel = costUpdate ? numberWithCommas(costUpdate.steel) : null;
     const quartz = costUpdate ? numberWithCommas(costUpdate.quartz) : null;
     const tritium = costUpdate ? numberWithCommas(costUpdate.tritium) : null;
@@ -82,7 +83,7 @@ const ResearchBox = ({
         {
             state: "noResource",
             title: "Need Resources",
-            color: "#402F2C",
+            color: "#b79c15",
             icon: (
                 <Image
                     src={plus}
@@ -164,31 +165,11 @@ const ResearchBox = ({
                     </ResourceContainer>
                 </InfoContainer>
                 <ButtonContainer>
-                    <ButtonPrimary
-                        customColor={
-                            isDisabled ? undefined : actualButtonState?.color
-                        }
-                        onClick={() =>
-                            actualButtonState?.callback &&
-                            actualButtonState.callback()
-                        }
+                    <ButtonUpgrade
+                        callback={upgrade}
                         disabled={isDisabled}
-                        requirements={hasRequirements}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flex: 1,
-                                justifyContent: "center",
-                                flexDirection: "row",
-                            }}
-                        >
-                            <div style={{ width: 20, height: 20 }}>
-                                {actualButtonState?.icon}
-                            </div>
-                            {actualButtonState?.title}
-                        </div>
-                    </ButtonPrimary>
+                        noRequirements={hasRequirements}
+                    />
                 </ButtonContainer>
             </SubBox>
         </Box>

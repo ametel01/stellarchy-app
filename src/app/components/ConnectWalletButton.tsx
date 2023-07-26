@@ -1,5 +1,5 @@
-import { Button } from "rebass";
-import { useAccount, useConnect } from "wagmi";
+import { Button } from "@mui/material";
+import { useConnect } from "wagmi";
 import { ButtonPrimary } from "./Button";
 
 export function ConnectWalletButton({}) {
@@ -9,7 +9,7 @@ export function ConnectWalletButton({}) {
     return (
         <div>
             {connectors.map((connector) => (
-                <ButtonPrimary
+                <Button
                     disabled={!connector.ready}
                     key={connector.id}
                     onClick={() => connect({ connector })}
@@ -18,7 +18,7 @@ export function ConnectWalletButton({}) {
                     {isLoading &&
                         connector.id === pendingConnector?.id &&
                         " (connecting)"}
-                </ButtonPrimary>
+                </Button>
             ))}
 
             {error && <div>{error.message}</div>}

@@ -11,7 +11,7 @@ import {
 } from "@/styles";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
-import { ButtonPrimary } from "@/components/Button";
+import { ButtonBuild } from "@/components/ButtonMain";
 import Image from "next/legacy/image";
 import { numberWithCommas } from "@/utils";
 import plus from "@/assets/icons/Plus.svg";
@@ -177,28 +177,11 @@ const DockyardBox = ({
                     />
                 </InfoContainer>
                 <ButtonContainer>
-                    <ButtonPrimary
-                        customColor={
-                            isDisabled ? undefined : actualButtonState?.color
-                        }
-                        onClick={() => build()}
+                    <ButtonBuild
+                        callback={build}
                         disabled={isDisabled}
-                        requirements={hasRequirements}
-                    >
-                        <div
-                            style={{
-                                display: "flex",
-                                flex: 1,
-                                justifyContent: "center",
-                                flexDirection: "row",
-                            }}
-                        >
-                            <div style={{ width: 20, height: 20 }}>
-                                {actualButtonState?.icon}
-                            </div>
-                            {actualButtonState?.title}
-                        </div>
-                    </ButtonPrimary>
+                        noRequirements={hasRequirements}
+                    />
                 </ButtonContainer>
             </SubBox>
         </Box>

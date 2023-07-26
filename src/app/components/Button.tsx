@@ -40,7 +40,7 @@ export const Base = styled(RebassButton)<{
 
 export const ButtonPrimary = styled(Base)`
     background: ${(props: { customColor?: string }) =>
-        props.customColor ?? "#295c28"};
+        props.customColor ?? "#6cbd6a"};
     color: #151a1e;
     display: block;
     white-space: nowrap;
@@ -53,7 +53,7 @@ export const ButtonPrimary = styled(Base)`
         background: ${(props: { customColor?: string }) =>
             props.customColor
                 ? darken(0.1, props.customColor)
-                : darken(0.1, "#295c28")};
+                : darken(0.1, "#6cbd6a")};
     }
     &:disabled {
         //background: #815042;
@@ -65,8 +65,8 @@ export const ButtonPrimary = styled(Base)`
     }
     &:requirements {
         background: ${(props: { customColor?: string }) =>
-            props.customColor ? darken(0.2, props.customColor) : "#524c4c"};
-        // background: #524c4c;
+            props.customColor ? darken(0.2, props.customColor) : "#815042"};
+        background: #524c4c;
     }
     @media (max-width: 1000px) {
         font-size: 14px;
