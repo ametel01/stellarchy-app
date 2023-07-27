@@ -1,7 +1,6 @@
-import {useContractWrite } from "wagmi";
+import { useContractWrite } from "wagmi";
 import { GAMEADDRESS } from "@/constants";
 import { GAMEABI } from "@/abi/stellarchy";
-import exp from "constants";
 
 export type UnitType =
     | "carrier"

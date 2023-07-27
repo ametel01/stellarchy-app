@@ -3,7 +3,6 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import styled from "styled-components";
-import Img from "../../assets/compounds/steel-mine.png";
 
 const ImageContainer = styled.div`
     width: 70px;

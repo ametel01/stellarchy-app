@@ -1,12 +1,10 @@
 "use client";
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import WalletHeader from "./WallerHeader";
 import LogoAndRankContainer from "@/components/LogoAndRankContainer";
 import ResourcesContainer from "@/components/Resources";
-import { WagmiConfig, useAccount, useDisconnect } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import { CollectResources } from "@/components/hooks/useCollectResources";
-import { config } from "@/page";
 
 const BodyContainer = styled.div`
     flex: 1;

@@ -1,6 +1,5 @@
 import { BigNumber } from "bignumber.js";
 import { TechLevels } from "./types";
-import { flat } from "electron-osx-sign";
 
 export const dataToNumber = (value: any) => new BigNumber(value).toNumber();
 

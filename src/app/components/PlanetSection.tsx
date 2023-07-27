@@ -10,12 +10,10 @@ import { PlanetIcon } from "@/components/Icons/Planet";
 import { ScaleIcon } from "@/components/Icons/Scale";
 import { TemperatureIcon } from "@/components/Icons/Temperature";
 import { dataToNumber, numberWithCommas } from "@/utils";
-import { BigNumber } from "bignumber.js";
 import Image from "next/legacy/image";
 import { useAccount, useContractRead } from "wagmi";
 import { ERC721ABI } from "@/abi/erc721";
 import { STERC721ADDRESS } from "@/constants";
-import useGetTokenId from "./hooks/useGetTokenId";
 
 const PlanetImageWrapper = styled(RowCentered)`
     height: 250px;
@@ -61,15 +59,6 @@ const PlanetInfoValue = styled(Row)`
 
     letter-spacing: 0.02em;
 `;
-
-function hex2a(hex: string) {
-    let str = "";
-    for (let i = 0; i < hex.length; i += 2) {
-        const v = parseInt(hex.substring(i, i + 2), 16);
-        if (v) str += String.fromCharCode(v);
-    }
-    return str;
-}
 
 const PlanetImage = () => {
     const ipfsUrl =
@@ -165,12 +154,6 @@ const PlanetImage = () => {
 };
 
 export const PlanetSection: FC = () => {
-    const { address } = useAccount();
-
-    const { data } = useGetTokenId(address);
-
-    const planetId = Number(data) && Number(data); // TODO: check the return value of read call and modify this line accordingly;
-
     return (
         <RowCentered>
             <MainContainer>

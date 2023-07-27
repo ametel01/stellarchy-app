@@ -1,11 +1,8 @@
-import styled from "styled-components";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
-import { Button } from "@mui/material";
 import Image from "next/legacy/image";
 import { numberWithCommas } from "@/utils";
 import plus from "@/assets/icons/Plus.svg";
-import Column from "@/components/Column";
 import React, { useMemo, useState } from "react";
 import useBuild, { UnitType } from "@/components/hooks/useBuild";
 import {
@@ -19,14 +16,13 @@ import {
     ImageContainer,
     ButtonContainer,
 } from "@/styles";
-import build from "next/dist/build";
 import { ButtonBuild } from "@/components/ButtonMain";
 
 interface Props {
     img: any;
     title: string;
     functionCallName: UnitType;
-    level?: number;
+    level: number;
     costUpdate?: { steel: number; quartz: number; tritium: number };
     hasEnoughResources?: boolean;
     requirementsMet?: boolean;

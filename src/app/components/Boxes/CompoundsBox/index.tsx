@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import { LayerGroup } from "@/components/Icons/LayerGroup";
 import { Coins } from "@/components/Icons/Coins";
-import Image from "next/legacy/image";
 import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
 import Column from "@/components/Column";
 import React, { ReactNode, useMemo } from "react";
 import { numberWithCommas } from "@/utils";
 import { ButtonUpgrade } from "@/components/ButtonMain";
 import ImagePopover from "@/components/modals";
-import { SteelMineDescription } from "@/components/Descriptions/CompoundsPopover";
 
 const Box = styled.div<{ customcolor: string }>`
     width: 100%;
@@ -87,7 +85,7 @@ const ButtonContainer = styled.div`
 `;
 
 interface Props {
-    img: any;
+    img: string;
     title: string;
     functionCallName: ComponentType;
     level?: number;

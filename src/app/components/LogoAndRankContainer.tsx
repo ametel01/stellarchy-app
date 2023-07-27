@@ -1,14 +1,11 @@
 // @ts-nocheck
+import { useMemo } from "react";
 import styled from "styled-components";
 import Image from "next/legacy/image";
 import nogame from "@/assets/stellarchy-logo.png";
-import trophy from "@/assets/icons/Trophy.svg";
-import ranking from "@/assets/icons/Ranking.svg";
-import { useMemo } from "react";
-import { dataToNumber, numberWithCommas } from "@/utils";
-import BigNumber from "bignumber.js";
+import { numberWithCommas } from "@/utils";
 import { TrophyIcon } from "./Icons/Trophy";
-import { useAccount, useContractRead } from "wagmi";
+import { useContractRead } from "wagmi";
 import { GAMEADDRESS, STERC721ADDRESS } from "@/constants";
 import { GAMEABI } from "@/abi/stellarchy";
 import { ERC721ABI } from "@/abi/erc721";

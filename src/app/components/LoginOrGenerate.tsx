@@ -6,11 +6,9 @@ import { ConnectWalletButton } from "./ConnectWalletButton";
 import Image from "next/legacy/image";
 import NoGameLogo from "@/assets/stellarchy-logo.png";
 import ufoLogo from "@/assets/icons/UFO.svg";
-import { ButtonPrimary } from "./Button";
+import { Button } from "@mui/base";
 import { ColumnCenter } from "./Column";
 import { RowCentered } from "./Row";
-// import SideBar from "@/components/SideBar"
-import { useAccount } from "wagmi";
 import SideBar from "./SideBar";
 import { GeneratePlanet } from "./hooks/useGeneratePlanet";
 
@@ -80,7 +78,6 @@ const AuthScreen = ({
 
 const ConnectWalletView: FC<ConnectWalletViewProps> = ({
     address,
-    loading,
     walletConnectLoading,
 }) => {
     return (
@@ -97,7 +94,7 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
             <div>
                 {!address ? (
                     walletConnectLoading ? (
-                        <ButtonPrimary disabled>Loading...</ButtonPrimary>
+                        <Button disabled>Loading...</Button>
                     ) : (
                         <ConnectWalletButton />
                     )
@@ -107,10 +104,7 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
     );
 };
 
-const GeneratePlanetView: FC<GeneratePlanetViewProps> = ({
-    address,
-    loading,
-}) => {
+const GeneratePlanetView: FC<GeneratePlanetViewProps> = () => {
     return (
         <GeneratePlanetWrapper>
             <SideBar />

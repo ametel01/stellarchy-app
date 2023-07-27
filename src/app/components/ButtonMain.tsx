@@ -1,7 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { alpha, styled } from "@mui/material/styles";
-import { Button, ButtonProps } from "@mui/material";
-import useUpgrade from "./hooks/useUpgrade";
+import { Button } from "@mui/material";
 
 interface Props {
     callback?: () => void;

@@ -1,8 +1,7 @@
 import { Button } from "@mui/material";
 import { useConnect } from "wagmi";
-import { ButtonPrimary } from "./Button";
 
-export function ConnectWalletButton({}) {
+export function ConnectWalletButton() {
     const { connect, connectors, error, isLoading, pendingConnector } =
         useConnect();
 

@@ -1,5 +1,4 @@
 import { StyledTabPanel } from "./styleds";
-import { useState } from "react";
 import { TechCost, Points, TechLevels } from "@/utils/types";
 import ResearchBox from "../Boxes/ResearchBox";
 import {
@@ -12,6 +11,8 @@ import {
     ionRequirements,
     plasmaTechRequirements,
     shieldRequirements,
+    spacetimeRequirements,
+    thrustRequirements,
     warpRequirements,
     weaponsRequirements,
 } from "@/utils";
@@ -80,8 +81,8 @@ export const ResearchTabPanel = ({
                 img={computerImg}
                 title="Digital Systems"
                 functionCallName="digitalSystems"
-                level={techLevels?.ion}
-                costUpdate={techCostUpgrade?.ion}
+                level={techLevels?.computer}
+                costUpdate={techCostUpgrade?.computer}
                 hasEnoughResources={
                     spendableResources &&
                     techCostUpgrade &&
@@ -158,6 +159,7 @@ export const ResearchTabPanel = ({
                         spendableResources
                     )
                 }
+                requirementsMet={spacetimeRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 description={CombustionDescription()}
@@ -191,6 +193,7 @@ export const ResearchTabPanel = ({
                         spendableResources
                     )
                 }
+                requirementsMet={thrustRequirements(labLevel, techLevels)}
             />
             <ResearchBox
                 description={WarpDescription()}
@@ -241,6 +244,7 @@ export const ResearchTabPanel = ({
                         spendableResources
                     )
                 }
+                requirementsMet={weaponsRequirements(labLevel)}
             />
             <ResearchBox
                 description={ShieldDescription()}

@@ -7,12 +7,9 @@ import {
     ResourcesTabs,
     ResourceTab,
 } from "../Popups/ResourcesSection/styleds";
-import { ResourcesIcon } from "@/components/Icons/Resources";
 import { CompoundsIcon } from "@/assets/icons/factory";
 import { ResearchIcon } from "@/assets/icons/lab";
-import { ShipyardIcon } from "@/components/Icons/Shipyard";
-import { differenceInMinutes, fromUnixTime } from "date-fns";
-import { dataToNumber, E18ToNumber, numberWithCommas } from "@/utils";
+import { dataToNumber } from "@/utils";
 import { ResearchTabPanel } from "./LabTab";
 import { DockyardTabPanel } from "./DockyardTab";
 import { DefenceTabPanel } from "./DefencesTab";
@@ -40,11 +37,11 @@ export const ResourcesSection: FC = () => {
         args: [planetId],
     });
 
-    const { data: collectibleResources } = useContractRead({
-        address: GAMEADDRESS,
-        abi: GAMEABI,
-        functionName: "getCollectibleResources",
-    });
+    // const { data: collectibleResources } = useContractRead({
+    //     address: GAMEADDRESS,
+    //     abi: GAMEABI,
+    //     functionName: "getCollectibleResources",
+    // });
 
     const { data: energyAvailable } = useContractRead({
         address: GAMEADDRESS,
@@ -52,11 +49,11 @@ export const ResourcesSection: FC = () => {
         functionName: "getEnergyAvailable",
     });
 
-    const { data: resourcesUpgradesCost } = useContractRead({
-        address: GAMEADDRESS,
-        abi: GAMEABI,
-        functionName: "getCompoundsUpgradeCost",
-    });
+    // const { data: resourcesUpgradesCost } = useContractRead({
+    //     address: GAMEADDRESS,
+    //     abi: GAMEABI,
+    //     functionName: "getCompoundsUpgradeCost",
+    // });
 
     const { data: compoundsLevels } = useContractRead({
         address: GAMEADDRESS,

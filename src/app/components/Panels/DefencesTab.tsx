@@ -6,7 +6,6 @@ import {
     blasterRequirements,
     beamRequirements,
     astralRequirements,
-    plasmaTechRequirements,
     plasmaRequirements,
 } from "@/utils";
 import blasterImg from "@/assets/defences/blaster.png";
@@ -16,9 +15,9 @@ import plasmaImg from "@/assets/defences/plasma.png";
 
 interface Props {
     spendableResources?: Points;
-    defenceLevels?: DefenceLevels;
-    defenceCost?: DefenceCost;
-    dockyardLevel?: number;
+    defenceLevels: DefenceLevels;
+    defenceCost: DefenceCost;
+    dockyardLevel: number;
     techLevels: TechLevels;
 }
 
@@ -36,8 +35,8 @@ export const DefenceTabPanel = ({
                 img={blasterImg}
                 title="Blaster"
                 functionCallName="blaster"
-                level={defenceLevels?.blaster}
-                costUpdate={defenceCost?.blaster}
+                level={defenceLevels.blaster}
+                costUpdate={defenceCost.blaster}
                 hasEnoughResources={
                     spendableResources &&
                     defenceCost &&
@@ -52,8 +51,8 @@ export const DefenceTabPanel = ({
                 img={beamImg}
                 title="Beam"
                 functionCallName="beam"
-                level={defenceLevels?.beam}
-                costUpdate={defenceCost?.beam}
+                level={defenceLevels.beam}
+                costUpdate={defenceCost.beam}
                 hasEnoughResources={
                     spendableResources &&
                     defenceCost &&
@@ -65,8 +64,8 @@ export const DefenceTabPanel = ({
                 img={astralLauncherImg}
                 title="Astral Launchen"
                 functionCallName="astralLauncher"
-                level={defenceLevels?.astral}
-                costUpdate={defenceCost?.astral}
+                level={defenceLevels.astral}
+                costUpdate={defenceCost.astral}
                 hasEnoughResources={
                     spendableResources &&
                     defenceCost &&
@@ -81,8 +80,8 @@ export const DefenceTabPanel = ({
                 img={plasmaImg}
                 title="Plasma Projector"
                 functionCallName="plasmaProjector"
-                level={defenceLevels?.plasma}
-                costUpdate={defenceCost?.plasma}
+                level={defenceLevels.plasma}
+                costUpdate={defenceCost.plasma}
                 hasEnoughResources={
                     spendableResources &&
                     defenceCost &&

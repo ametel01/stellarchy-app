@@ -4,13 +4,7 @@
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import Head from "next/head";
-import {
-    WagmiConfig,
-    createConfig,
-    configureChains,
-    useConnect,
-    useAccount,
-} from "wagmi";
+import { WagmiConfig, createConfig, configureChains } from "wagmi";
 import { arbitrum, mantle, arbitrumGoerli } from "wagmi/chains";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";

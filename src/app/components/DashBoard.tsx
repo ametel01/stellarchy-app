@@ -4,7 +4,6 @@ import { PlanetSection } from "./PlanetSection";
 import { ResourcesSection } from "./Panels";
 import { config } from "@/page";
 import { WagmiConfig } from "wagmi";
-import { useQueryClient } from "wagmi";
 
 const GameContainer = styled.div`
     display: grid;
