@@ -27,6 +27,20 @@ import weaponsImg from "@/assets/techs/weapons.png";
 import computerImg from "@/assets/techs/computer.png";
 import shieldImg from "@/assets/techs/shield.png";
 import energyImg from "@/assets/techs/energy.png";
+import {
+    ArmourDescription,
+    BeamDescription,
+    CombustionDescription,
+    ComputerDescription,
+    EnergyDescription,
+    IonDescription,
+    PlasmaDescription,
+    ShieldDescription,
+    SpacetimeDescription,
+    ThrustDescription,
+    WarpDescription,
+    WeaponsDescription,
+} from "../Descriptions/LabPopover";
 
 interface Props {
     spendableResources?: Points;
@@ -45,6 +59,7 @@ export const ResearchTabPanel = ({
     return (
         <StyledTabPanel {...rest}>
             <ResearchBox
+                description={EnergyDescription()}
                 img={energyImg}
                 title="Energy Innovation"
                 functionCallName="energyInnovation"
@@ -61,6 +76,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={energyRequirements(labLevel)}
             />
             <ResearchBox
+                description={ComputerDescription()}
                 img={computerImg}
                 title="Digital Systems"
                 functionCallName="digitalSystems"
@@ -77,6 +93,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={digitalRequirements(labLevel)}
             />
             <ResearchBox
+                description={BeamDescription()}
                 img={beamImg}
                 title="Beam Technology"
                 functionCallName="beamTechnology"
@@ -93,6 +110,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={beamTechRequirements(labLevel, techLevels)}
             />
             <ResearchBox
+                description={IonDescription()}
                 img={ionImg}
                 title="Ion Systems"
                 functionCallName="ionSystems"
@@ -109,6 +127,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={ionRequirements(labLevel, techLevels)}
             />
             <ResearchBox
+                description={PlasmaDescription()}
                 img={plasmaImg}
                 title="Plasma Engineering"
                 functionCallName="plasmaEngineering"
@@ -125,6 +144,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={plasmaTechRequirements(labLevel, techLevels)}
             />
             <ResearchBox
+                description={SpacetimeDescription()}
                 img={spacetimeImg}
                 title="Spacetime Warp"
                 functionCallName="spacetimeWarp"
@@ -140,6 +160,7 @@ export const ResearchTabPanel = ({
                 }
             />
             <ResearchBox
+                description={CombustionDescription()}
                 img={combustionImg}
                 title="Combustion Drive"
                 functionCallName="combustionDrive"
@@ -156,6 +177,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={combustionRequirements(labLevel, techLevels)}
             />
             <ResearchBox
+                description={ThrustDescription()}
                 img={thrustImg}
                 title="Thrust Propulsion"
                 functionCallName="thrustPropulsion"
@@ -171,6 +193,7 @@ export const ResearchTabPanel = ({
                 }
             />
             <ResearchBox
+                description={WarpDescription()}
                 img={warpEnginImg}
                 title="Warp Drive"
                 functionCallName="warpDrive"
@@ -187,6 +210,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={warpRequirements(labLevel, techLevels)}
             />
             <ResearchBox
+                description={ArmourDescription()}
                 img={armourImg}
                 title="Armour Innovation"
                 functionCallName="armourInnovation"
@@ -203,6 +227,7 @@ export const ResearchTabPanel = ({
                 requirementsMet={armourRequirements(labLevel)}
             />
             <ResearchBox
+                description={WeaponsDescription()}
                 img={weaponsImg}
                 title="Weapons Development"
                 functionCallName="weaponsDevelopment"
@@ -218,6 +243,7 @@ export const ResearchTabPanel = ({
                 }
             />
             <ResearchBox
+                description={ShieldDescription()}
                 img={shieldImg}
                 title="Shields Technology"
                 functionCallName="shieldTech"

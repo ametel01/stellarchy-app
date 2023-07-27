@@ -15,8 +15,9 @@ import { ButtonUpgrade } from "@/components/ButtonMain";
 import Image from "next/legacy/image";
 import { numberWithCommas } from "@/utils";
 import plus from "@/assets/icons/Plus.svg";
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
+import ImagePopover from "@/components/modals";
 
 interface Props {
     img: any;
@@ -26,6 +27,7 @@ interface Props {
     costUpdate?: { steel: number; quartz: number; tritium: number };
     hasEnoughResources?: boolean;
     requirementsMet?: boolean;
+    description: ReactNode;
 }
 
 type ButtonState = "valid" | "noResource" | "noRequirements";
@@ -46,6 +48,7 @@ const ResearchBox = ({
     costUpdate,
     hasEnoughResources,
     requirementsMet,
+    description,
 }: Props) => {
     const upgrade = useUpgrade(functionCallName);
 
@@ -123,13 +126,10 @@ const ResearchBox = ({
     return (
         <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
-                <Image
-                    src={img}
-                    alt={title}
-                    style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                    }}
+                <ImagePopover
+                    image={img}
+                    title={title}
+                    descripiton={description}
                 />
             </ImageContainer>
             <SubBox>

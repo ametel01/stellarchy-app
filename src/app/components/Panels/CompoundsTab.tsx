@@ -8,6 +8,14 @@ import dockyardImg from "@/assets/compounds/dockyard.png";
 import { CompoundsCostUpgrade, CompoundsLevels, Points } from "@/utils/types";
 import { calculEnoughResources } from "@/utils";
 import CompoundsBox from "../Boxes/CompoundsBox";
+import {
+    DockyardDescription,
+    EnergyMineDescription,
+    LabDescription,
+    QuartzMineDescription,
+    SteelMineDescription,
+    TritiumMineDescription,
+} from "../Descriptions/CompoundsPopover";
 
 interface Props {
     spendableResources?: Points;
@@ -24,6 +32,7 @@ export const CompoundsTabPanel = ({
     return (
         <StyledTabPanel {...rest}>
             <CompoundsBox
+                description={SteelMineDescription()}
                 img={steelImg}
                 title="Steel Mine"
                 functionCallName="steelMine"
@@ -39,6 +48,7 @@ export const CompoundsTabPanel = ({
                 }
             />
             <CompoundsBox
+                description={QuartzMineDescription()}
                 img={quartzImg}
                 title="Quartz Mine"
                 functionCallName="quartzMine"
@@ -54,6 +64,7 @@ export const CompoundsTabPanel = ({
                 }
             />
             <CompoundsBox
+                description={TritiumMineDescription()}
                 img={tritiumImg}
                 title="Tritium Mine"
                 functionCallName="tritiumMine"
@@ -69,6 +80,7 @@ export const CompoundsTabPanel = ({
                 }
             />
             <CompoundsBox
+                description={EnergyMineDescription()}
                 img={energyImg}
                 title="Energy Plant"
                 functionCallName="energyPlant"
@@ -84,6 +96,7 @@ export const CompoundsTabPanel = ({
                 }
             />
             <CompoundsBox
+                description={LabDescription()}
                 img={labImg}
                 title="Research Lab"
                 functionCallName="lab"
@@ -99,6 +112,7 @@ export const CompoundsTabPanel = ({
                 }
             />
             <CompoundsBox
+                description={DockyardDescription()}
                 img={dockyardImg}
                 title="Dockyard"
                 functionCallName="dockyard"

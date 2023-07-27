@@ -4,10 +4,11 @@ import { Coins } from "@/components/Icons/Coins";
 import Image from "next/legacy/image";
 import useUpgrade, { ComponentType } from "@/components/hooks/useUpgrade";
 import Column from "@/components/Column";
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { numberWithCommas } from "@/utils";
 import { ButtonUpgrade } from "@/components/ButtonMain";
 import ImagePopover from "@/components/modals";
+import { SteelMineDescription } from "@/components/Descriptions/CompoundsPopover";
 
 const Box = styled.div<{ customcolor: string }>`
     width: 100%;
@@ -97,6 +98,7 @@ interface Props {
         energy: number;
     };
     hasEnoughResources?: boolean;
+    description: ReactNode;
 }
 
 type ButtonState = "valid" | "noResource";
@@ -116,6 +118,7 @@ const CompoundsBox = ({
     hasEnoughResources,
     costUpdate,
     functionCallName,
+    description,
 }: Props) => {
     const upgrade = useUpgrade(functionCallName);
 
@@ -154,7 +157,11 @@ const CompoundsBox = ({
     return (
         <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
-                <ImagePopover image={img} title={title} />
+                <ImagePopover
+                    image={img}
+                    title={title}
+                    descripiton={description}
+                />
             </ImageContainer>
             <SubBox>
                 <Title>{title}</Title>
