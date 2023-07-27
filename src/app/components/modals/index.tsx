@@ -3,15 +3,17 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import styled from "styled-components";
+import Img from "../../assets/compounds/steel-mine.png";
 
 const ImageContainer = styled.div`
     width: 70px;
 `;
 
-type PopoverProps = {
+interface PopoverProps {
     image: any;
     title: string;
-};
+    descripiton: React.ReactNode;
+}
 
 export default function ImagePopover(props: PopoverProps) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -63,7 +65,16 @@ export default function ImagePopover(props: PopoverProps) {
                 onClose={handlePopoverClose}
                 disableRestoreFocus
             >
-                <Typography sx={{ p: 1 }}>I use Popover.</Typography>
+                <Typography
+                    sx={{
+                        p: 3,
+                        bgcolor: "#192125",
+                        color: "white",
+                        maxWidth: "500px",
+                    }}
+                >
+                    <div>{props.descripiton}</div>
+                </Typography>
             </Popover>
         </div>
     );
