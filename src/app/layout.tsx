@@ -1,5 +1,4 @@
 import { Providers } from "./providers";
-import "@fontsource/roboto/300.css";
 
 export const metadata = {
     title: "Stellarchy",
