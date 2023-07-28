@@ -82,11 +82,11 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
 }) => {
     return (
         <MainWrapper>
-            <RowCentered style={{ width: "300px" }}>
+            <RowCentered style={{ width: "600px" }}>
                 <Image src={NoGameLogo} alt="logo" objectFit="contain" />
             </RowCentered>
 
-            <SubText>
+            <SubText aria-setsize={28}>
                 Manage your resources, discover new worlds and conquer the
                 galaxy!
             </SubText>

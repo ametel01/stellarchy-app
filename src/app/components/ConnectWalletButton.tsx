@@ -1,26 +1,10 @@
 import { Button } from "@mui/material";
 import { useConnect } from "wagmi";
+import * as React from "react";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export function ConnectWalletButton() {
-    const { connect, connectors, error, isLoading, pendingConnector } =
-        useConnect();
-
-    return (
-        <div>
-            {connectors.map((connector) => (
-                <Button
-                    disabled={!connector.ready}
-                    key={connector.id}
-                    onClick={() => connect({ connector })}
-                >
-                    {connector.name}
-                    {isLoading &&
-                        connector.id === pendingConnector?.id &&
-                        " (connecting)"}
-                </Button>
-            ))}
-
-            {error && <div>{error.message}</div>}
-        </div>
-    );
+    return <ConnectButton accountStatus="address" chainStatus="icon" />;
 }

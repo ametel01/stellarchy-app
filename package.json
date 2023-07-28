@@ -15,9 +15,11 @@
         "@mui/icons-material": "^5.14.1",
         "@mui/joy": "^5.0.0-alpha.89",
         "@mui/material": "^5.14.2",
+        "@rainbow-me/rainbowkit": "^1.0.7",
         "axios": "^1.4.0",
         "bignumber.js": "^9.1.1",
         "lokijs": "^1.5.12",
+        "net": "^1.0.2",
         "next": "^13.4.0",
         "pino-pretty": "^10.2.0",
         "polished": "^4.2.2",
@@ -27,7 +29,8 @@
         "rebass": "^4.0.7",
         "rebass-next": "^2.0.2",
         "styled-components": "^6.0.5",
-        "viem": "~0.3.36",
+        "tls": "^0.0.1",
+        "viem": "^0.3.50",
         "wagmi": "^1.0.6"
     },
     "devDependencies": {
