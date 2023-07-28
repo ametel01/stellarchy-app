@@ -21,12 +21,12 @@ const MainWrapper = styled(ColumnCenter)`
 export const SubText = styled.div`
     color: #ffffff;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 22px;
     text-align: center;
     letter-spacing: 0.02em;
     padding: 0 15px 16px;
-    width: 20%;
+    width: 30%;
 
     color: #ffffff;
 
@@ -86,7 +86,7 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
                 <Image src={NoGameLogo} alt="logo" objectFit="contain" />
             </RowCentered>
 
-            <SubText aria-setsize={28}>
+            <SubText>
                 Manage your resources, discover new worlds and conquer the
                 galaxy!
             </SubText>
