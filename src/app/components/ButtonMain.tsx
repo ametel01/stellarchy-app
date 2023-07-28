@@ -59,7 +59,7 @@ export function ButtonUpgrade(props: Props) {
                     fullWidth={true}
                     sx={{
                         background: "#524c4c",
-                        color: "black",
+                        color: "white",
                         size: "large",
                     }}
                 >

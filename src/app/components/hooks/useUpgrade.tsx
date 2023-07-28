@@ -1,6 +1,7 @@
-import { useContractWrite } from "wagmi";
+import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import { GAMEABI } from "@/abi/stellarchy";
 import { GAMEADDRESS } from "@/constants";
+import { Popover } from "@mui/material";
 
 export type ComponentType =
     | "steelMine"
@@ -23,17 +24,11 @@ export type ComponentType =
     | "shieldTech";
 
 export default function useUpgrade(unitName: ComponentType) {
-    const { write } = useContractWrite({
+    const { config } = usePrepareContractWrite({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: `${unitName}Upgrade`,
     });
+    const { write } = useContractWrite(config);
     return write;
-    // const { address: account } = useAccount();
-
-    // return useCallback(async () => {
-    //     if (!account) {
-    //         throw new Error("Missing Dependencies");
-    //     }
-    // }, [account, data]);
 }
