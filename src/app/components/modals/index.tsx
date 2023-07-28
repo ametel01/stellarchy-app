@@ -70,6 +70,8 @@ export default function ImagePopover(props: PopoverProps) {
                         bgcolor: "#192125",
                         color: "white",
                         maxWidth: "500px",
+                        display: "inline-flex",
+                        // borderRadius: "10px",
                     }}
                 >
                     <div>{props.descripiton}</div>

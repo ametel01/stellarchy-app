@@ -17,6 +17,13 @@ import {
     ButtonContainer,
 } from "@/styles";
 import { ButtonBuild } from "@/components/ButtonMain";
+import { Input } from "@mui/joy";
+import { styled } from "styled-components";
+
+const CustomInput = styled(Input)`
+    background-color: "#625f63";
+    width: "6px";
+`;
 
 interface Props {
     img: any;
@@ -171,11 +178,13 @@ const DefencesBox = ({
                             {tritium}
                         </NumberContainer>
                     </ResourceContainer>
-                    <input
+                    <CustomInput
                         type="text"
                         value={quantity}
                         onChange={onChangeHandler}
-                        size={4}
+                        size="sm"
+                        // color="neutral"
+                        variant="soft"
                     />
                 </InfoContainer>
                 <ButtonContainer>

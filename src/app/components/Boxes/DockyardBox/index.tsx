@@ -17,6 +17,8 @@ import { numberWithCommas } from "@/utils";
 import plus from "@/assets/icons/Plus.svg";
 import React, { useMemo, useState } from "react";
 import useBuild, { UnitType } from "@/components/hooks/useBuild";
+import { Input } from "@mui/joy";
+import { size } from "viem";
 
 interface Props {
     img: any;
@@ -169,11 +171,13 @@ const DockyardBox = ({
                             {tritium}
                         </NumberContainer>
                     </ResourceContainer>
-                    <input
+                    <Input
                         type="text"
                         value={quantity}
                         onChange={onChangeHandler}
-                        size={4}
+                        size="sm"
+                        color="neutral"
+                        variant="soft"
                     />
                 </InfoContainer>
                 <ButtonContainer>
