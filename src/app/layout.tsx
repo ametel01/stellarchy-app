@@ -1,19 +1,20 @@
-import { Providers } from './providers'
+import { Providers } from "./providers";
+import "@fontsource/roboto/300.css";
 
 export const metadata = {
-  title: 'Stellarchy',
-}
+    title: "Stellarchy",
+};
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  )
+    return (
+        <html lang="en">
+            <body>
+                <Providers>{children}</Providers>
+            </body>
+        </html>
+    );
 }

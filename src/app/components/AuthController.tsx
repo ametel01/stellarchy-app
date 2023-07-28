@@ -1,20 +1,12 @@
 // @ts-nocheck
 import { useEffect, useState, useMemo } from "react";
-import {
-    WagmiConfig,
-    useAccount,
-    useConnect,
-    useContractRead,
-    useContractWrite,
-} from "wagmi";
+import { useAccount } from "wagmi";
 import AuthScreen from "@/components/LoginOrGenerate";
 import Dashboard from "@/components/DashBoard";
-import { GAMEADDRESS } from "@/constants";
-import { GAMEABI } from "@/abi/stellarchy";
 import useGetTokenId from "@/components/hooks/useGetTokenId";
 import { GeneratePlanet } from "./hooks/useGeneratePlanet";
 
-const AuthController = ({ Component, pageProps }: AppProps) => {
+const AuthController = () => {
     const { address } = useAccount();
     // const { connect } = useConnectors();
 
@@ -24,7 +16,7 @@ const AuthController = ({ Component, pageProps }: AppProps) => {
     useEffect(() => {
         setTimeout(() => {
             setWalletConnectLoading(false);
-        }, 25000);
+        }, 25);
     }, [walletConnectLoading]);
 
     const { data, isLoading } = useGetTokenId(address);
@@ -36,8 +28,7 @@ const AuthController = ({ Component, pageProps }: AppProps) => {
         return planetIdBN > 0;
     }, [data]);
 
-    if (!address || !hasGeneratedPlanets) {
-        // || isLoading || walletConnectLoading) {
+    if (!address || !hasGeneratedPlanets || isLoading || walletConnectLoading) {
         return (
             <AuthScreen
                 address={address}

@@ -1,27 +1,6 @@
-import { Button } from "rebass";
-import { useAccount, useConnect } from "wagmi";
-import { ButtonPrimary } from "./Button";
+import * as React from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-export function ConnectWalletButton({}) {
-    const { connect, connectors, error, isLoading, pendingConnector } =
-        useConnect();
-
-    return (
-        <div>
-            {connectors.map((connector) => (
-                <ButtonPrimary
-                    disabled={!connector.ready}
-                    key={connector.id}
-                    onClick={() => connect({ connector })}
-                >
-                    {connector.name}
-                    {isLoading &&
-                        connector.id === pendingConnector?.id &&
-                        " (connecting)"}
-                </ButtonPrimary>
-            ))}
-
-            {error && <div>{error.message}</div>}
-        </div>
-    );
+export function ConnectWalletButton() {
+    return <ConnectButton accountStatus="address" chainStatus="icon" />;
 }

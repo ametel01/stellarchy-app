@@ -6,11 +6,9 @@ import { ConnectWalletButton } from "./ConnectWalletButton";
 import Image from "next/legacy/image";
 import NoGameLogo from "@/assets/stellarchy-logo.png";
 import ufoLogo from "@/assets/icons/UFO.svg";
-import { ButtonPrimary } from "./Button";
+import { Button } from "@mui/base";
 import { ColumnCenter } from "./Column";
 import { RowCentered } from "./Row";
-// import SideBar from "@/components/SideBar"
-import { useAccount } from "wagmi";
 import SideBar from "./SideBar";
 import { GeneratePlanet } from "./hooks/useGeneratePlanet";
 
@@ -23,12 +21,12 @@ const MainWrapper = styled(ColumnCenter)`
 export const SubText = styled.div`
     color: #ffffff;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 22px;
     text-align: center;
     letter-spacing: 0.02em;
     padding: 0 15px 16px;
-    width: 20%;
+    width: 30%;
 
     color: #ffffff;
 
@@ -80,12 +78,11 @@ const AuthScreen = ({
 
 const ConnectWalletView: FC<ConnectWalletViewProps> = ({
     address,
-    loading,
     walletConnectLoading,
 }) => {
     return (
         <MainWrapper>
-            <RowCentered style={{ width: "300px" }}>
+            <RowCentered style={{ width: "600px" }}>
                 <Image src={NoGameLogo} alt="logo" objectFit="contain" />
             </RowCentered>
 
@@ -97,7 +94,7 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
             <div>
                 {!address ? (
                     walletConnectLoading ? (
-                        <ButtonPrimary disabled>Loading...</ButtonPrimary>
+                        <Button disabled>Loading...</Button>
                     ) : (
                         <ConnectWalletButton />
                     )
@@ -107,10 +104,7 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
     );
 };
 
-const GeneratePlanetView: FC<GeneratePlanetViewProps> = ({
-    address,
-    loading,
-}) => {
+const GeneratePlanetView: FC<GeneratePlanetViewProps> = () => {
     return (
         <GeneratePlanetWrapper>
             <SideBar />

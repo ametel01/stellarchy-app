@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { TYPE } from "../../theme";
-// import { ExternalLink } from '../../theme/components'
-// import { getVoyagerLink } from '../../utils'
 import { AutoColumn } from "../Column";
 import { AutoRow } from "../Row";
-// import { ExternalLink as LinkIcon } from 'react-feather'
 
 export type Status = "idle" | "error" | "loading" | "success";
 
@@ -26,19 +22,6 @@ const TxSummary = styled.div`
     font-weight: normal;
     line-height: 120%;
     color: #222;
-`;
-
-const IconWrapper = styled.div<{ size?: number }>`
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
-    & > img,
-    span {
-        height: ${({ size }) => (size ? size + "px" : "24px")};
-        width: ${({ size }) => (size ? size + "px" : "24px")};
-    }
 `;
 
 export default function TransactionPopup({

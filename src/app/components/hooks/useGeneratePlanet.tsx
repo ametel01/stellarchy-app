@@ -1,5 +1,5 @@
 import { GAMEABI } from "@/abi/stellarchy";
-import { ButtonPrimary } from "@/components/Button";
+import { Button } from "@mui/base";
 import { GAMEADDRESS } from "@/constants";
 import * as React from "react";
 import { parseEther } from "viem";
@@ -16,12 +16,12 @@ export function GeneratePlanet() {
 
     return (
         <div>
-            <ButtonPrimary
+            <Button
                 disabled={isLoading}
                 onClick={() => write({ value: parseEther("0.01") })}
             >
                 {isLoading ? "Minting..." : "Mint"}
-            </ButtonPrimary>
+            </Button>
             {isSuccess && (
                 <SubText>
                     Successfully minted your NFT!

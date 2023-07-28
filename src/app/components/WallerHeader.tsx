@@ -37,8 +37,7 @@ const WalletHeader = ({ account, disconnect }: WallerHeaderProps) => {
     const shortenedAddress = account
         ? `${account.substring(0, 6)}...${account.substring(59)}`
         : "null";
-
-    const [isClient, setIsClient] = useState(false);
+    const [isClient, setIsClient] = useState(false); // eslint-disable-line no-unused-vars
 
     useEffect(() => {
         setIsClient(true);
@@ -58,8 +57,9 @@ const WalletHeader = ({ account, disconnect }: WallerHeaderProps) => {
                     style={{
                         maxWidth: "100%",
                         height: "auto",
-                        objectFit: "contain"
-                    }} />
+                        objectFit: "contain",
+                    }}
+                />
                 {shortenedAddress}
             </AstronautContainer>
         </HeaderWalletContainer>

@@ -1,8 +1,15 @@
 import { StyledTabPanel } from "./styleds";
-import { useState } from "react";
-import { ShipsCost, Points, ShipsLevels } from "@/utils/types";
+import {
+    calculEnoughResources,
+    carrierRequirements,
+    celestiaRequirements,
+    scraperRequirements,
+    sparrowRequirements,
+    frigateRequirements,
+    armadeRequirements,
+} from "@/utils";
+import { ShipsCost, Points, ShipsLevels, TechLevels } from "@/utils/types";
 import DockyardBox from "../Boxes/DockyardBox";
-import { calculEnoughResources } from "@/utils";
 import armadeImg from "@/assets/ships/armade.png";
 import frigateImg from "@/assets/ships/frigate.png";
 import carrierImg from "@/assets/ships/carrier.png";
@@ -14,12 +21,16 @@ interface Props {
     spendableResources?: Points;
     shipsLevels?: ShipsLevels;
     shipsCost?: ShipsCost;
+    dockyardLevel?: number;
+    techLevels: TechLevels;
 }
 
 export const DockyardTabPanel = ({
     spendableResources,
     shipsLevels,
     shipsCost,
+    dockyardLevel,
+    techLevels,
     ...rest
 }: Props) => {
     return (
@@ -35,6 +46,7 @@ export const DockyardTabPanel = ({
                     shipsCost &&
                     calculEnoughResources(shipsCost.carrier, spendableResources)
                 }
+                requirementsMet={carrierRequirements(dockyardLevel, techLevels)}
             />
             <DockyardBox
                 img={celestiaImg}
@@ -50,18 +62,10 @@ export const DockyardTabPanel = ({
                         spendableResources
                     )
                 }
-            />
-            <DockyardBox
-                img={sparrowImg}
-                title="Sparrow"
-                functionCallName="sparrow"
-                level={shipsLevels?.sparrow}
-                costUpdate={shipsCost?.sparrow}
-                hasEnoughResources={
-                    spendableResources &&
-                    shipsCost &&
-                    calculEnoughResources(shipsCost.sparrow, spendableResources)
-                }
+                requirementsMet={celestiaRequirements(
+                    dockyardLevel,
+                    techLevels
+                )}
             />
             <DockyardBox
                 img={scraperImg}
@@ -74,6 +78,20 @@ export const DockyardTabPanel = ({
                     shipsCost &&
                     calculEnoughResources(shipsCost.scraper, spendableResources)
                 }
+                requirementsMet={scraperRequirements(dockyardLevel, techLevels)}
+            />
+            <DockyardBox
+                img={sparrowImg}
+                title="Sparrow"
+                functionCallName="sparrow"
+                level={shipsLevels?.sparrow}
+                costUpdate={shipsCost?.sparrow}
+                hasEnoughResources={
+                    spendableResources &&
+                    shipsCost &&
+                    calculEnoughResources(shipsCost.sparrow, spendableResources)
+                }
+                requirementsMet={sparrowRequirements(dockyardLevel)}
             />
             <DockyardBox
                 img={frigateImg}
@@ -86,6 +104,7 @@ export const DockyardTabPanel = ({
                     shipsCost &&
                     calculEnoughResources(shipsCost.frigate, spendableResources)
                 }
+                requirementsMet={frigateRequirements(dockyardLevel, techLevels)}
             />
             <DockyardBox
                 img={armadeImg}
@@ -98,6 +117,7 @@ export const DockyardTabPanel = ({
                     shipsCost &&
                     calculEnoughResources(shipsCost.armade, spendableResources)
                 }
+                requirementsMet={armadeRequirements(dockyardLevel, techLevels)}
             />
         </StyledTabPanel>
     );

@@ -1,10 +1,35 @@
 export interface CompoundsCostUpgrade {
-    steelMine: { steel: any; quartz: any; tritium: any; energy: any };
-    quartzMine: { steel: any; quartz: any; tritium: any; energy: any };
-    tritiumMine: { steel: any; quartz: any; tritium: any; energy: any };
-    energyPlant: { steel: any; quartz: any; tritium: any; energy: any };
-    dockyard: { steel: any; quartz: any; tritium: any; energy: any };
-    lab: { steel: any; quartz: any; tritium: any; energy: any };
+    steelMine: {
+        steel: number;
+        quartz: number;
+        tritium: number;
+        energy: number;
+    };
+    quartzMine: {
+        steel: number;
+        quartz: number;
+        tritium: number;
+        energy: number;
+    };
+    tritiumMine: {
+        steel: number;
+        quartz: number;
+        tritium: number;
+        energy: number;
+    };
+    energyPlant: {
+        steel: number;
+        quartz: number;
+        tritium: number;
+        energy: number;
+    };
+    dockyard: {
+        steel: number;
+        quartz: number;
+        tritium: number;
+        energy: number;
+    };
+    lab: { steel: number; quartz: number; tritium: number; energy: number };
 }
 
 export interface CompoundsLevels {
@@ -17,12 +42,12 @@ export interface CompoundsLevels {
 }
 
 export interface ShipsCost {
-    carrier: { steel: any; quartz: any; tritium: any };
-    scraper: { steel: any; quartz: any; tritium: any };
-    celestia: { steel: any; quartz: any; tritium: any };
-    sparrow: { steel: any; quartz: any; tritium: any };
-    frigate: { steel: any; quartz: any; tritium: any };
-    armade: { steel: any; quartz: any; tritium: any };
+    carrier: { steel: number; quartz: number; tritium: number };
+    scraper: { steel: number; quartz: number; tritium: number };
+    celestia: { steel: number; quartz: number; tritium: number };
+    sparrow: { steel: number; quartz: number; tritium: number };
+    frigate: { steel: number; quartz: number; tritium: number };
+    armade: { steel: number; quartz: number; tritium: number };
 }
 
 export interface ShipsLevels {
@@ -35,10 +60,10 @@ export interface ShipsLevels {
 }
 
 export interface DefenceCost {
-    blaster: { steel: any; quartz: any; tritium: any };
-    beam: { steel: any; quartz: any; tritium: any };
-    astral: { steel: any; quartz: any; tritium: any };
-    plasma: { steel: any; quartz: any; tritium: any };
+    blaster: { steel: number; quartz: number; tritium: number };
+    beam: { steel: number; quartz: number; tritium: number };
+    astral: { steel: number; quartz: number; tritium: number };
+    plasma: { steel: number; quartz: number; tritium: number };
 }
 
 export interface DefenceLevels {
@@ -49,18 +74,18 @@ export interface DefenceLevels {
 }
 
 export interface TechCost {
-    armour: { steel: any; quartz: any; tritium: any };
-    combustion: { steel: any; quartz: any; tritium: any };
-    computer: { steel: any; quartz: any; tritium: any };
-    energy: { steel: any; quartz: any; tritium: any };
-    warp: { steel: any; quartz: any; tritium: any };
-    spacetime: { steel: any; quartz: any; tritium: any };
-    thrust: { steel: any; quartz: any; tritium: any };
-    ion: { steel: any; quartz: any; tritium: any };
-    beam: { steel: any; quartz: any; tritium: any };
-    plasma: { steel: any; quartz: any; tritium: any };
-    shielding: { steel: any; quartz: any; tritium: any };
-    weapons: { steel: any; quartz: any; tritium: any };
+    armour: { steel: number; quartz: number; tritium: number };
+    combustion: { steel: number; quartz: number; tritium: number };
+    computer: { steel: number; quartz: number; tritium: number };
+    energy: { steel: number; quartz: number; tritium: number };
+    warp: { steel: number; quartz: number; tritium: number };
+    spacetime: { steel: number; quartz: number; tritium: number };
+    thrust: { steel: number; quartz: number; tritium: number };
+    ion: { steel: number; quartz: number; tritium: number };
+    beam: { steel: number; quartz: number; tritium: number };
+    plasma: { steel: number; quartz: number; tritium: number };
+    shielding: { steel: number; quartz: number; tritium: number };
+    weapons: { steel: number; quartz: number; tritium: number };
 }
 
 export interface TechLevels {
