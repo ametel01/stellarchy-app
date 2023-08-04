@@ -108,16 +108,18 @@ const PlanetImage = () => {
         <>
             <PlanetImageWrapper>
                 {imgId ? (
-                    <Image
-                        src={`${imgUrl}/${imgId}.png`}
-                        width={250}
-                        height={252}
-                        alt={"planet"}
-                        style={{
-                            maxWidth: "100%",
-                            height: "auto",
-                        }}
-                    />
+                    <a href={`${ipfsUrl}${tokenId}.json`}>
+                        <Image
+                            src={`${imgUrl}/${imgId}.png`}
+                            width={250}
+                            height={252}
+                            alt={"planet"}
+                            style={{
+                                maxWidth: "100%",
+                                height: "auto",
+                            }}
+                        />
+                    </a>
                 ) : (
                     <ImageIcon />
                 )}{" "}

@@ -32,7 +32,7 @@ const AuthController = () => {
         return (
             <AuthScreen
                 address={address}
-                generatePlanet={() => generatePlanet()}
+                generatePlanet={() => generatePlanet}
                 walletConnectLoading={walletConnectLoading}
                 loading={isLoading || !data}
                 hasGeneratedPlanets={hasGeneratedPlanets}

@@ -107,7 +107,6 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
 const GeneratePlanetView: FC<GeneratePlanetViewProps> = () => {
     return (
         <GeneratePlanetWrapper>
-            <SideBar />
             <MainWrapper>
                 <RowCentered style={{ width: "300px" }}>
                     <Image

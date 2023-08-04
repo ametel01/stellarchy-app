@@ -66,6 +66,7 @@ export const ResourcesSection: FC = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getCompoundsUpgradeCost",
+        args: [planetId],
     });
 
     const { data: techLevels } = useContractRead({
@@ -79,6 +80,7 @@ export const ResourcesSection: FC = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getTechsUpgradeCosts",
+        args: [planetId],
     });
 
     const { data: shipsLevels } = useContractRead({
