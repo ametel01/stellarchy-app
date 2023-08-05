@@ -55,7 +55,7 @@ export const TYPE = {
             />
         );
     },
-    error({ error, ...props }: { error: boolean } & TextProps) {
+    error({ ...props }: { error: boolean } & TextProps) {
         return <TextWrapper fontWeight={500} {...props} />;
     },
 };

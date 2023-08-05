@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { useMemo, useState } from "react";
 import styled from "styled-components";
 import Image from "next/legacy/image";
@@ -42,7 +40,9 @@ const Container = styled.div`
 `;
 
 interface Props {
-    total?: string;
+    spendable?: string;
+    collectible?: string;
+    available?: string;
     img: any;
     iconImg: any;
     title: string;
@@ -52,7 +52,13 @@ interface Props {
 const TotalResourceText = styled.div`
     color: #81d3ff;
     font-weight: 500;
-    margin-left: 5px;
+    margin-left: 10px;
+`;
+
+const TotalResourceType = styled.div`
+    font-size: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
 `;
 
 const TotalResourceContainer = styled.div`
@@ -78,6 +84,8 @@ const ImageAddressContainer = styled.div`
 `;
 
 const Energy = ({ available, img, iconImg, title }: Props) => {
+    const isNegative = Number(available) < 0;
+
     return (
         <Container>
             <ImageAddressContainer>
@@ -106,8 +114,12 @@ const Energy = ({ available, img, iconImg, title }: Props) => {
                         }}
                     />
                     <div>
-                        <font size="1">available</font>
-                        <TotalResourceText>{available}</TotalResourceText>
+                        <TotalResourceType>available</TotalResourceType>
+                        <TotalResourceText
+                            style={{ color: isNegative ? "red" : "#81d3ff" }}
+                        >
+                            {available}
+                        </TotalResourceText>
                     </div>
                 </TotalResourceContainer>
             </TotalResourceWrapper>
@@ -171,9 +183,9 @@ const Resource = ({
                         }}
                     />
                     <div>
-                        <font size="1">Spendable</font>
+                        <TotalResourceType>Spendable</TotalResourceType>
                         <TotalResourceText>{spendable}</TotalResourceText>
-                        <font size="1">Collectible</font>
+                        <TotalResourceType>Collectible</TotalResourceType>
                         <TotalResourceText>{collectible}</TotalResourceText>
                     </div>
                 </TotalResourceContainer>
@@ -189,36 +201,36 @@ const ResourcesContainer = () => {
         address: STERC721ADDRESS,
         abi: ERC721ABI,
         functionName: "tokenOf",
-        args: [address],
+        args: [address!],
     });
 
     const { data: spendable } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getSpendableResources",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: collectible } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getCollectibleResources",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: energy } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getEnergyAvailable",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const spendableResources = useMemo(() => {
         if (spendable) {
             return {
-                steel: numberWithCommas(spendable["steel"]),
-                quartz: numberWithCommas(spendable["quartz"]),
-                tritium: numberWithCommas(spendable["tritium"]),
+                steel: numberWithCommas(Number(spendable["steel"])),
+                quartz: numberWithCommas(Number(spendable["quartz"])),
+                tritium: numberWithCommas(Number(spendable["tritium"])),
             };
         }
     }, [spendable]);
@@ -226,9 +238,9 @@ const ResourcesContainer = () => {
     const collectibleResources = useMemo(() => {
         if (collectible) {
             return {
-                steel: numberWithCommas(collectible["steel"]),
-                quartz: numberWithCommas(collectible["quartz"]),
-                tritium: numberWithCommas(collectible["tritium"]),
+                steel: numberWithCommas(Number(collectible["steel"])),
+                quartz: numberWithCommas(Number(collectible["quartz"])),
+                tritium: numberWithCommas(Number(collectible["tritium"])),
             };
         }
     }, [collectible]);
@@ -236,7 +248,7 @@ const ResourcesContainer = () => {
     const energyAvailable = useMemo(() => {
         if (energy) {
             return {
-                energy: Number(energy),
+                energy: numberWithCommas(Number(energy)),
             };
         }
     }, [energy]);

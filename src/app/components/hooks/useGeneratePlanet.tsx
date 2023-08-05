@@ -1,13 +1,12 @@
 import { GAMEABI } from "@/abi/stellarchy";
-import { Button } from "@mui/base";
+import { Button } from "@mui/material";
 import { GAMEADDRESS } from "@/constants";
 import * as React from "react";
 import { parseEther } from "viem";
 import { useContractWrite } from "wagmi";
-import { SubText } from "../LoginOrGenerate";
 
 export function GeneratePlanet() {
-    const { data, isLoading, write, isSuccess } = useContractWrite({
+    const { isLoading, write } = useContractWrite({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "generatePlanet",
@@ -17,19 +16,17 @@ export function GeneratePlanet() {
     return (
         <div>
             <Button
+                variant="contained"
                 disabled={isLoading}
+                sx={{
+                    background: "#6cbd6a",
+                    color: "black",
+                    size: "large",
+                }}
                 onClick={() => write({ value: parseEther("0.01") })}
             >
-                {isLoading ? "Minting..." : "Mint"}
+                {isLoading ? "Minting..." : "Mint Planet"}
             </Button>
-            {isSuccess && (
-                <SubText>
-                    Successfully minted your NFT!
-                    <a href={`https://goerli.arbiscan.io/tx/${data?.hash}`}>
-                        Arbiscan
-                    </a>
-                </SubText>
-            )}
         </div>
     );
 }

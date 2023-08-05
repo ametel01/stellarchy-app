@@ -28,7 +28,7 @@ export default function ImagePopover(props: PopoverProps) {
     const open = Boolean(anchorEl);
 
     return (
-        <div>
+        <>
             <Typography
                 aria-owns={open ? "mouse-over-popover" : undefined}
                 aria-haspopup="true"
@@ -77,6 +77,6 @@ export default function ImagePopover(props: PopoverProps) {
                     <div>{props.descripiton}</div>
                 </Typography>
             </Popover>
-        </div>
+        </>
     );
 }

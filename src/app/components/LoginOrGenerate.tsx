@@ -9,7 +9,6 @@ import ufoLogo from "@/assets/icons/UFO.svg";
 import { Button } from "@mui/base";
 import { ColumnCenter } from "./Column";
 import { RowCentered } from "./Row";
-import SideBar from "./SideBar";
 import { GeneratePlanet } from "./hooks/useGeneratePlanet";
 
 const MainWrapper = styled(ColumnCenter)`
@@ -107,7 +106,6 @@ const ConnectWalletView: FC<ConnectWalletViewProps> = ({
 const GeneratePlanetView: FC<GeneratePlanetViewProps> = () => {
     return (
         <GeneratePlanetWrapper>
-            <SideBar />
             <MainWrapper>
                 <RowCentered style={{ width: "300px" }}>
                     <Image

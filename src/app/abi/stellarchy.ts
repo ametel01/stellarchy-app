@@ -8,6 +8,25 @@ export const GAMEABI = [
         anonymous: false,
         inputs: [
             {
+                indexed: false,
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+            {
+                indexed: false,
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
+            },
+        ],
+        name: "FleetSpent",
+        type: "event",
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
                 indexed: true,
                 internalType: "address",
                 name: "previousOwner",
@@ -21,6 +40,44 @@ export const GAMEABI = [
             },
         ],
         name: "OwnershipTransferred",
+        type: "event",
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: false,
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+            {
+                indexed: false,
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
+            },
+        ],
+        name: "TechSpent",
+        type: "event",
+    },
+    {
+        anonymous: false,
+        inputs: [
+            {
+                indexed: false,
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+            {
+                indexed: false,
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
+            },
+        ],
+        name: "TotalResourcesSpent",
         type: "event",
     },
     {
@@ -237,6 +294,38 @@ export const GAMEABI = [
         type: "function",
     },
     {
+        inputs: [],
+        name: "fleetLeader",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        name: "fleetSpent",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
         inputs: [
             {
                 internalType: "uint32",
@@ -344,7 +433,13 @@ export const GAMEABI = [
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+        ],
         name: "getCompoundsUpgradeCost",
         outputs: [
             {
@@ -654,6 +749,88 @@ export const GAMEABI = [
         type: "function",
     },
     {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+        ],
+        name: "getEnergyForUpgrade",
+        outputs: [
+            {
+                components: [
+                    {
+                        internalType: "uint256",
+                        name: "steelMine",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "uint256",
+                        name: "quartzMine",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "uint256",
+                        name: "tritiumMine",
+                        type: "uint256",
+                    },
+                ],
+                internalType: "struct Structs.EnergyCost",
+                name: "",
+                type: "tuple",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "getLeaderBoard",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "getLeadersPoints",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
         inputs: [],
         name: "getNumberOfPlanets",
         outputs: [
@@ -679,6 +856,19 @@ export const GAMEABI = [
             {
                 internalType: "uint256",
                 name: "points",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "getPrizePoll",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
                 type: "uint256",
             },
         ],
@@ -1001,7 +1191,13 @@ export const GAMEABI = [
         type: "function",
     },
     {
-        inputs: [],
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+        ],
         name: "getTechsUpgradeCosts",
         outputs: [
             {
@@ -1381,6 +1577,19 @@ export const GAMEABI = [
         type: "function",
     },
     {
+        inputs: [],
+        name: "pointLeader",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
         inputs: [
             {
                 internalType: "uint256",
@@ -1411,6 +1620,25 @@ export const GAMEABI = [
         name: "renounceOwnership",
         outputs: [],
         stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        name: "resourcesSpent",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
         type: "function",
     },
     {
@@ -1481,6 +1709,38 @@ export const GAMEABI = [
     },
     {
         inputs: [],
+        name: "techLeader",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        name: "techSpent",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
         name: "thrustPropulsionUpgrade",
         outputs: [],
         stateMutability: "nonpayable",
@@ -1523,6 +1783,19 @@ export const GAMEABI = [
         name: "tritiumMineUpgrade",
         outputs: [],
         stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "universeStartTime",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
         type: "function",
     },
     {

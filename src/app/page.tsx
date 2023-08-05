@@ -1,12 +1,9 @@
-//@ts-nocheck
 "use client";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import Head from "next/head";
 import { WagmiConfig, createConfig, configureChains } from "wagmi";
-import { arbitrum, mantle, arbitrumGoerli } from "wagmi/chains";
-import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
+import { arbitrumGoerli } from "wagmi/chains";
 import { AppWrapper } from "./components/AppWrapper";
 import { FixedGlobalStyle, ThemedGlobalStyle } from "./theme";
 import AuthController from "./components/AuthController";

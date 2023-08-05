@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import styled from "styled-components";
 import armourImg from "@/assets/techs/armour.png";
 import combustionImg from "@/assets/techs/combustion.png";
@@ -197,7 +196,7 @@ export function BeamDescription() {
                     Requirements:
                     <ul>
                         <li>Research Lab Level 1</li>
-                        <li>Energy Innovation Level 2</li>
+                        <li>Energy Innovation Level 1</li>
                     </ul>
                 </TextBox>
             </Container>

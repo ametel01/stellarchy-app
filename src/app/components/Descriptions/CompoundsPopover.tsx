@@ -1,11 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
 import styled from "styled-components";
-import steelImg from "@/assets/compounds/steel-mine.png";
-import quartzImg from "@/assets/compounds/quartz-mine.png";
-import tritiumImg from "@/assets/compounds/tritium-mine.png";
-import energyImg from "@/assets/compounds/energy-plant.png";
-import labImg from "@/assets/compounds/lab.png";
-import dockyardImg from "@/assets/compounds/dockyard.png";
 
 const Container = styled.div`
     width: 100%;
@@ -21,32 +14,26 @@ const TextBox = styled.p`
     // padding-left: 5px;
 `;
 
-const FloatImage = styled.img`
-    float: left; /* Change to 'right' to float the image to the right */
-    margin: 10px;
-    width: 200px; /* Adjust as needed */
-    height: 200px; /* Adjust as needed */
-`;
+// const FloatImage = styled.img`
+//     float: left; /* Change to 'right' to float the image to the right */
+//     margin: 10px;
+//     width: 200px; /* Adjust as needed */
+//     height: 200px; /* Adjust as needed */
+// `;
 
 export function SteelMineDescription() {
     return (
         <>
             <Container>
-                <FloatImage src={steelImg.src} />
+                {/* <FloatImage src={steelImg.src} /> */}
                 <TextBox>
-                    Steel serves as the principal resource instrumental in the
-                    establishment and maintenance of your Empire. It is observed
-                    that the production potential of steel increases with the
-                    depth of the mining operations. This steel resource can be
-                    allocated for various applications including, but not
-                    limited to, the fabrication of structures, spacecraft,
-                    defensive mechanisms, and for the purpose of research
-                    activities. It should be noted that the depth of mining is
-                    directly proportional to the energy expenditure required for
-                    optimal steel production. Given its abundant nature, steel
-                    is considered a common resource. Consequently, in the
-                    context of resource exchange or trade, it commands the
-                    lowest value compared to other available resources.
+                    Steel is a crucial resource for building and maintaining
+                    your Empire in the game. Its production increases with the
+                    depth of mining, driving applications like constructing
+                    structures, spacecraft, defenses, and conducting research.
+                    Note, however, that deeper mining requires more energy.
+                    Steel is common and holds the lowest trade value compared to
+                    other resources due to its abundance.
                 </TextBox>
             </Container>
         </>
@@ -57,22 +44,16 @@ export function QuartzMineDescription() {
     return (
         <>
             <Container>
-                <FloatImage src={quartzImg.src} />
                 <TextBox>
-                    Quartz mines primarily facilitate the extraction of a key
-                    resource integral to the fabrication of electronic circuits
-                    and the constitution of specific alloy compounds. The energy
-                    expenditure associated with quartz mining is approximately
-                    1.5 times that of steel mining, which consequently elevates
-                    the value of the former. A significant proportion of ship
-                    and building construction necessitates the use of quartz.
-                    Nonetheless, the specific type of quartz required for
-                    spaceship manufacturing is relatively scarce and shares a
-                    similarity with steel in terms of its depth-specific
-                    availability. Thus, the establishment of mines in more
-                    profound geological strata is expected to augment the yield
-                    of quartz, particularly the varieties critical for advanced
-                    applications such as spaceship construction.
+                    Quartz mines extract Quartz, a key resource used in
+                    electronic circuit creation and specific alloy formation.
+                    Quartz mining consumes around 1.5 times more energy than
+                    steel mining, making it more valuable. It's heavily used in
+                    ship and building construction. The particular type of
+                    Quartz needed for spaceship building is rarer and typically
+                    found deeper, mirroring steel's depth-specific availability.
+                    Hence, deeper mines yield more Quartz, especially types
+                    vital for advanced uses like spaceship construction.
                 </TextBox>
             </Container>
         </>
@@ -83,23 +64,17 @@ export function TritiumMineDescription() {
     return (
         <>
             <Container>
-                <FloatImage src={tritiumImg.src} />
                 <TextBox>
-                    Tritium is a stable hydrogen isotope with a natural
-                    prevalence in the oceans of established colonies at an
-                    approximate ratio of one Tritium atom per 6500 hydrogen
-                    atoms, equating to roughly 154 parts per million (PPM).
-                    Consequently, Tritium constitutes approximately 0.015% of
-                    all water by number of atoms, or 0.030% on a weight basis.
-                    The extraction and processing of Tritium are performed by
-                    specific synthesis apparatuses, which employ specially
+                    Tritium, a stable hydrogen isotope, is naturally found in
+                    oceanic colonies, with approximately one Tritium atom per
+                    6500 hydrogen atoms. This equals roughly 0.015% of all water
+                    atoms or 0.030% on a weight basis. Tritium extraction and
+                    processing are conducted by specialized synthesizers using
                     engineered centrifuges to separate Tritium from water.
-                    Upgrades to these synthesizers can increase the volume of
-                    Tritium deposits processed. The applications of Tritium are
-                    multifaceted. It is utilized in the operation of sensor
-                    phalanx scans, for visualizing galaxies, as a fuel source
-                    for spacecraft, and for executing specific research
-                    upgrades.
+                    Upgrades to these machines can enhance Tritium processing
+                    capacity. Tritium's uses are broad. It powers sensor phalanx
+                    scans, visualizes galaxies, fuels spacecraft, and
+                    facilitates specific research upgrades.
                 </TextBox>
             </Container>
         </>
@@ -110,7 +85,6 @@ export function EnergyMineDescription() {
     return (
         <>
             <Container>
-                <FloatImage src={energyImg.src} />
                 <TextBox>
                     Large-scale photovoltaic systems, commonly referred to as
                     solar arrays, function as the primary power source for both
@@ -134,7 +108,6 @@ export function LabDescription() {
         <>
             <Container>
                 <TextBox>
-                    <FloatImage src={labImg.src} />
                     Research Labs serve as critical infrastructure within an
                     empire, designated for the generation and refinement of
                     technological assets. Their function is twofold: they
@@ -161,7 +134,6 @@ export function DockyardDescription() {
     return (
         <>
             <Container>
-                <FloatImage src={dockyardImg.src} />
                 <TextBox>
                     The planetary dockyard is a specialized facility dedicated
                     to the manufacturing of space assets, including various

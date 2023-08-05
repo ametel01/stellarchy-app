@@ -18,7 +18,6 @@ import plus from "@/assets/icons/Plus.svg";
 import React, { useMemo, useState } from "react";
 import useBuild, { UnitType } from "@/components/hooks/useBuild";
 import { Input } from "@mui/joy";
-import { size } from "viem";
 
 interface Props {
     img: any;
