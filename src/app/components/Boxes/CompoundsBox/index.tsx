@@ -8,7 +8,6 @@ import { numberWithCommas } from "@/utils";
 import { ButtonUpgrade } from "@/components/ButtonMain";
 import ImagePopover from "@/components/modals";
 import { StaticImageData } from "next/image";
-import TransactionBackdrop from "@/components/TransactionStatus";
 
 const Box = styled.div<{ customcolor: string }>`
     width: 100%;
@@ -120,7 +119,7 @@ const CompoundsBox = ({
     functionCallName,
     description,
 }: Props) => {
-    const { write: upgrade, data } = useUpgrade(functionCallName);
+    const { write: upgrade } = useUpgrade(functionCallName);
 
     const steel = costUpdate ? numberWithCommas(costUpdate.steel) : null;
     const quartz = costUpdate ? numberWithCommas(costUpdate.quartz) : null;
@@ -209,7 +208,6 @@ const CompoundsBox = ({
                         noRequirements={false}
                     />
                 </ButtonContainer>
-                <TransactionBackdrop hash={data?.hash} />
             </SubBox>
         </Box>
     );
