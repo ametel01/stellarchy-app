@@ -35,24 +35,12 @@ export const ResourcesSection: FC = () => {
         args: [planetId!],
     });
 
-    // const { data: collectibleResources } = useContractRead({
-    //     address: GAMEADDRESS,
-    //     abi: GAMEABI,
-    //     functionName: "getCollectibleResources",
-    // });
-
     const { data: energyAvailable } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getEnergyAvailable",
         args: [planetId!],
     });
-
-    // const { data: resourcesUpgradesCost } = useContractRead({
-    //     address: GAMEADDRESS,
-    //     abi: GAMEABI,
-    //     functionName: "getCompoundsUpgradeCost",
-    // });
 
     const { data: compoundsLevels } = useContractRead({
         address: GAMEADDRESS,
