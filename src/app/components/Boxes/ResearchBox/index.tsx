@@ -50,7 +50,7 @@ const ResearchBox = ({
     requirementsMet,
     description,
 }: Props) => {
-    const upgrade = useUpgrade(functionCallName);
+    const { write: upgrade } = useUpgrade(functionCallName);
 
     const steel = costUpdate ? numberWithCommas(costUpdate.steel) : null;
     const quartz = costUpdate ? numberWithCommas(costUpdate.quartz) : null;
