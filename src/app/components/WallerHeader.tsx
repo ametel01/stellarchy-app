@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Image from "next/legacy/image";
 import astronaut from "@/assets/icons/Astronaut.svg";
 import { LogoutIcon } from "@/components/Icons/Logout";
-import { useState, useEffect } from "react";
 
 const LogoutContainer = styled.div`
     margin: 8px 16px;
@@ -37,11 +36,12 @@ const WalletHeader = ({ account, disconnect }: WallerHeaderProps) => {
     const shortenedAddress = account
         ? `${account.substring(0, 6)}...${account.substring(59)}`
         : "null";
-    const [isClient, setIsClient] = useState(false); // eslint-disable-line no-unused-vars
+    // eslint-disable-line no-unused-vars
+    // const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+    // useEffect(() => {
+    //     setIsClient(true);
+    // }, []);
 
     return (
         <HeaderWalletContainer>

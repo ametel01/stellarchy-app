@@ -1,4 +1,4 @@
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite } from "wagmi";
 import { GAMEADDRESS } from "@/constants";
 import { GAMEABI } from "@/abi/stellarchy";
 
@@ -15,7 +15,7 @@ export type UnitType =
     | "plasmaProjector";
 
 export default function useBuild(unitName: UnitType, quantity: number) {
-    const { config, error } = usePrepareContractWrite({
+    const { write } = useContractWrite({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: `${unitName}Build`,
@@ -24,6 +24,5 @@ export default function useBuild(unitName: UnitType, quantity: number) {
             console.log("Error", error);
         },
     });
-    const { write } = useContractWrite(config);
     return write;
 }

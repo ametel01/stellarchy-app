@@ -29,7 +29,7 @@ interface Props {
     img: any;
     title: string;
     functionCallName: UnitType;
-    level: number;
+    level?: number;
     costUpdate?: { steel: number; quartz: number; tritium: number };
     hasEnoughResources?: boolean;
     requirementsMet?: boolean;

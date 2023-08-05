@@ -1,6 +1,4 @@
-// @ts-nocheck
-
-import { FC, useEffect, useMemo } from "react";
+import { FC, useMemo } from "react";
 import { RowCentered } from "@/components/Row";
 import {
     ResourcesTabList,
@@ -27,14 +25,14 @@ export const ResourcesSection: FC = () => {
         address: STERC721ADDRESS,
         abi: ERC721ABI,
         functionName: "tokenOf",
-        args: [account],
+        args: [account!],
     });
 
     const { data: spendableResources } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getSpendableResources",
-        args: [planetId],
+        args: [planetId!],
     });
 
     // const { data: collectibleResources } = useContractRead({
@@ -47,6 +45,7 @@ export const ResourcesSection: FC = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getEnergyAvailable",
+        args: [planetId!],
     });
 
     // const { data: resourcesUpgradesCost } = useContractRead({
@@ -59,35 +58,42 @@ export const ResourcesSection: FC = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getCompoundsLevels",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: compoundsCost } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getCompoundsUpgradeCost",
-        args: [planetId],
+        args: [planetId!],
+    });
+
+    const { data: energyCost } = useContractRead({
+        address: GAMEADDRESS,
+        abi: GAMEABI,
+        functionName: "getEnergyForUpgrade",
+        args: [planetId!],
     });
 
     const { data: techLevels } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getTechsLevels",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: techCost } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getTechsUpgradeCosts",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: shipsLevels } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getShipsLevels",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: shipsCost } = useContractRead({
@@ -100,7 +106,7 @@ export const ResourcesSection: FC = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getDefencesLevels",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const { data: defencesCost } = useContractRead({
@@ -142,7 +148,7 @@ export const ResourcesSection: FC = () => {
                     tritium: dataToNumber(
                         compoundsCost["steelMine"]["tritium"]
                     ),
-                    energy: 0,
+                    energy: dataToNumber(energyCost?.["steelMine"]),
                 },
                 quartzMine: {
                     steel: dataToNumber(compoundsCost["quartzMine"]["steel"]),
@@ -150,7 +156,7 @@ export const ResourcesSection: FC = () => {
                     tritium: dataToNumber(
                         compoundsCost["quartzMine"]["tritium"]
                     ),
-                    energy: 0,
+                    energy: dataToNumber(energyCost?.["quartzMine"]),
                 },
                 tritiumMine: {
                     steel: dataToNumber(compoundsCost["tritiumMine"]["steel"]),
@@ -160,7 +166,7 @@ export const ResourcesSection: FC = () => {
                     tritium: dataToNumber(
                         compoundsCost["tritiumMine"]["tritium"]
                     ),
-                    energy: 0,
+                    energy: dataToNumber(energyCost?.["tritiumMine"]),
                 },
                 energyPlant: {
                     steel: dataToNumber(compoundsCost["energyPlant"]["steel"]),
@@ -431,20 +437,20 @@ export const ResourcesSection: FC = () => {
                 spendableResources={planetResources}
                 techLevels={planetTechLevels}
                 techCostUpgrade={planetTechCostUpgrade}
-                labLevel={compoundsLevels?.lab}
+                labLevel={Number(compoundsLevels?.lab)}
             />
             <DockyardTabPanel
                 spendableResources={planetResources}
                 shipsLevels={planetShipsLevels}
                 shipsCost={planetShipsCost}
-                dockyardLevel={compoundsLevels?.dockyard}
+                dockyardLevel={Number(compoundsLevels?.dockyard)}
                 techLevels={planetTechLevels}
             />
             <DefenceTabPanel
                 spendableResources={planetResources}
                 defenceLevels={planetDefencesLevels}
                 defenceCost={planetDefenceCost}
-                dockyardLevel={compoundsLevels?.dockyard}
+                dockyardLevel={Number(compoundsLevels?.dockyard)}
                 techLevels={planetTechLevels}
             />
             <EmptyTabPanel />

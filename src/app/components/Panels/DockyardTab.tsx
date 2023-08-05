@@ -22,7 +22,7 @@ interface Props {
     shipsLevels?: ShipsLevels;
     shipsCost?: ShipsCost;
     dockyardLevel?: number;
-    techLevels: TechLevels;
+    techLevels?: TechLevels;
 }
 
 export const DockyardTabPanel = ({

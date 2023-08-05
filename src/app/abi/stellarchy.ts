@@ -309,6 +309,25 @@ export const GAMEABI = [
     {
         inputs: [
             {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        name: "fleetSpent",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
                 internalType: "uint32",
                 name: "amount",
                 type: "uint32",
@@ -724,6 +743,88 @@ export const GAMEABI = [
                 internalType: "int256",
                 name: "",
                 type: "int256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "planetId",
+                type: "uint256",
+            },
+        ],
+        name: "getEnergyForUpgrade",
+        outputs: [
+            {
+                components: [
+                    {
+                        internalType: "uint256",
+                        name: "steelMine",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "uint256",
+                        name: "quartzMine",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "uint256",
+                        name: "tritiumMine",
+                        type: "uint256",
+                    },
+                ],
+                internalType: "struct Structs.EnergyCost",
+                name: "",
+                type: "tuple",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "getLeaderBoard",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [],
+        name: "getLeadersPoints",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
             },
         ],
         stateMutability: "view",
@@ -1524,6 +1625,25 @@ export const GAMEABI = [
     {
         inputs: [
             {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        name: "resourcesSpent",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
                 internalType: "uint32",
                 name: "amount",
                 type: "uint32",
@@ -1590,6 +1710,25 @@ export const GAMEABI = [
     {
         inputs: [],
         name: "techLeader",
+        outputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        stateMutability: "view",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "",
+                type: "uint256",
+            },
+        ],
+        name: "techSpent",
         outputs: [
             {
                 internalType: "uint256",

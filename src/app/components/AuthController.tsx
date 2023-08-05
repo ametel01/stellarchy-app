@@ -1,10 +1,9 @@
-// @ts-nocheck
 import { useEffect, useState, useMemo } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useContractRead } from "wagmi";
 import AuthScreen from "@/components/LoginOrGenerate";
 import Dashboard from "@/components/DashBoard";
-import useGetTokenId from "@/components/hooks/useGetTokenId";
-import { GeneratePlanet } from "./hooks/useGeneratePlanet";
+import { STERC721ADDRESS } from "@/constants";
+import { ERC721ABI } from "@/abi/erc721";
 
 const AuthController = () => {
     const { address } = useAccount();
@@ -19,9 +18,14 @@ const AuthController = () => {
         }, 25);
     }, [walletConnectLoading]);
 
-    const { data, isLoading } = useGetTokenId(address);
+    const { data, isLoading } = useContractRead({
+        address: STERC721ADDRESS,
+        abi: ERC721ABI,
+        functionName: "tokenOf",
+        args: [address!],
+    });
 
-    const generatePlanet = GeneratePlanet();
+    // const generatePlanet = GeneratePlanet();
 
     const hasGeneratedPlanets = useMemo(() => {
         const planetIdBN = Number(data);
@@ -32,7 +36,7 @@ const AuthController = () => {
         return (
             <AuthScreen
                 address={address}
-                generatePlanet={() => generatePlanet}
+                // generatePlanet={() => generatePlanet}
                 walletConnectLoading={walletConnectLoading}
                 loading={isLoading || !data}
                 hasGeneratedPlanets={hasGeneratedPlanets}

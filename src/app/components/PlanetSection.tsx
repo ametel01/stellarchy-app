@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { FC, useEffect, useMemo, useState } from "react";
 import Row, { RowBetween, RowCentered } from "@/components/Row";
 import styled from "styled-components";
@@ -14,6 +13,14 @@ import Image from "next/legacy/image";
 import { useAccount, useContractRead } from "wagmi";
 import { ERC721ABI } from "@/abi/erc721";
 import { STERC721ADDRESS } from "@/constants";
+
+// const LeaderBoardWrapper = styled(Row)`
+//     height: 50px;
+//     width: auto;
+//     background: #192125;
+//     overflow: hidden;
+//     float left;
+// `;
 
 const PlanetImageWrapper = styled(RowCentered)`
     height: 250px;
@@ -61,6 +68,10 @@ const PlanetInfoValue = styled(Row)`
 `;
 
 const PlanetImage = () => {
+    // const { data } = useContractRead({
+    //     address: GAMEADDRESS,
+    // });
+
     const ipfsUrl =
         "https://scarlet-biological-chipmunk-168.mypinata.cloud/ipfs/Qmd5j1gnUBtbfpHCMnWDE8HRHu1G3ghuXSxjKW2pzy3PAk/";
     const [metadata, setMetadata] = useState<any>();
@@ -71,7 +82,7 @@ const PlanetImage = () => {
         address: STERC721ADDRESS,
         abi: ERC721ABI,
         functionName: "tokenOf",
-        args: [address],
+        args: [address!],
     });
 
     useEffect(() => {
@@ -98,8 +109,12 @@ const PlanetImage = () => {
         return null;
     }, [tokenId]);
 
+    interface Props {
+        trait_type: string;
+    }
+
     const findAttribute = (name: string) =>
-        metadata?.attributes.find(({ trait_type }) => trait_type === name)
+        metadata?.attributes.find((props: Props) => props.trait_type === name)
             ?.value || "-";
 
     // const findImage = () => metadata?.image || "-";

@@ -1,7 +1,6 @@
-import { useContractWrite, usePrepareContractWrite } from "wagmi";
+import { useContractWrite } from "wagmi";
 import { GAMEABI } from "@/abi/stellarchy";
 import { GAMEADDRESS } from "@/constants";
-import { Popover } from "@mui/material";
 
 export type ComponentType =
     | "steelMine"
@@ -24,11 +23,11 @@ export type ComponentType =
     | "shieldTech";
 
 export default function useUpgrade(unitName: ComponentType) {
-    const { config } = usePrepareContractWrite({
+    const { data, write } = useContractWrite({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: `${unitName}Upgrade`,
     });
-    const { write } = useContractWrite(config);
-    return write;
+
+    return { write, data };
 }

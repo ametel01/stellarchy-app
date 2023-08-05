@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useMemo } from "react";
 import styled from "styled-components";
 import Image from "next/legacy/image";
@@ -36,14 +35,14 @@ const RankContainer = styled.div`
     //background-color: rebeccapurple;
 `;
 
-const RankLineContainer = styled.div`
+export const RankLineContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
     font-weight: 500;
 `;
 
-const TitleContainer = styled.div`
+export const TitleContainer = styled.div`
     font-weight: 500;
     line-height: 18px;
     letter-spacing: 0.02em;
@@ -51,19 +50,22 @@ const TitleContainer = styled.div`
     margin-left: 4px;
 `;
 
-const LogoAndRankContainer = ({ account }) => {
+interface Props {
+    account: `0x${string}`;
+}
+const LogoAndRankContainer = (props: Props) => {
     const { data: planetId } = useContractRead({
         address: STERC721ADDRESS,
         abi: ERC721ABI,
         functionName: "tokenOf",
-        args: [account],
+        args: [props.account],
     });
 
     const { data: points } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getPlanetPoints",
-        args: [planetId],
+        args: [planetId!],
     });
 
     const score = useMemo(() => {
@@ -71,8 +73,6 @@ const LogoAndRankContainer = ({ account }) => {
             return numberWithCommas(Number(points));
         }
     }, [points]);
-
-    console.log(Number(planetId));
 
     return (
         <LogoContainer>

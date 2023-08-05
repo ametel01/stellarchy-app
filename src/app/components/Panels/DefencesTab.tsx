@@ -15,10 +15,10 @@ import plasmaImg from "@/assets/defences/plasma.png";
 
 interface Props {
     spendableResources?: Points;
-    defenceLevels: DefenceLevels;
-    defenceCost: DefenceCost;
-    dockyardLevel: number;
-    techLevels: TechLevels;
+    defenceLevels?: DefenceLevels;
+    defenceCost?: DefenceCost;
+    dockyardLevel?: number;
+    techLevels?: TechLevels;
 }
 
 export const DefenceTabPanel = ({
