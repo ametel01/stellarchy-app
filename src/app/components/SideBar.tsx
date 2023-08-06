@@ -43,7 +43,6 @@ const SideBar = () => {
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getLeaderBoard",
-        suspense: true,
     });
 
     useEffect(() => {
