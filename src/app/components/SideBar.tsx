@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import styled from "styled-components";
 import WalletHeader from "./WallerHeader";
 import LogoAndRankContainer from "@/components/LogoAndRankContainer";
@@ -43,6 +44,13 @@ const SideBar = () => {
         abi: GAMEABI,
         functionName: "getLeaderBoard",
     });
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            console.log("This will run after 1 second!");
+        }, 2500);
+        return () => clearTimeout(timer);
+    }, []);
 
     const { data: leadPoints } = useContractRead({
         address: GAMEADDRESS,
