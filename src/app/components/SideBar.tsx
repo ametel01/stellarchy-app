@@ -24,7 +24,7 @@ const SideBar = () => {
             <LogoAndRankContainer account={account!} />
             <ResourcesContainer />
             <CollectResources />
-            {/* <LeaderBoard /> */}
+            <LeaderBoard />
         </BodyContainer>
     );
 };
