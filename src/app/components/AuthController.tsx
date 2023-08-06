@@ -15,7 +15,7 @@ const AuthController = () => {
     useEffect(() => {
         setTimeout(() => {
             setWalletConnectLoading(false);
-        }, 2500);
+        }, 1000);
     }, [walletConnectLoading]);
 
     const { data, isLoading } = useContractRead({
