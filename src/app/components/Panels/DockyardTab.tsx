@@ -8,6 +8,14 @@ import {
     frigateRequirements,
     armadeRequirements,
 } from "@/utils";
+import {
+    CarrierDescription,
+    CelestiaDescription,
+    ScraperDescription,
+    SparrowDescription,
+    FrigateDescription,
+    ArmadeDescription,
+} from "../Descriptions/DockyardPopover";
 import { ShipsCost, Points, ShipsLevels, TechLevels } from "@/utils/types";
 import DockyardBox from "../Boxes/DockyardBox";
 import armadeImg from "@/assets/ships/armade.png";
@@ -36,6 +44,7 @@ export const DockyardTabPanel = ({
     return (
         <StyledTabPanel {...rest}>
             <DockyardBox
+                description={CarrierDescription()}
                 img={carrierImg}
                 title="Carrier"
                 functionCallName="carrier"
@@ -49,6 +58,7 @@ export const DockyardTabPanel = ({
                 requirementsMet={carrierRequirements(dockyardLevel, techLevels)}
             />
             <DockyardBox
+                description={CelestiaDescription()}
                 img={celestiaImg}
                 title="Celestia"
                 functionCallName="celestia"
@@ -68,6 +78,7 @@ export const DockyardTabPanel = ({
                 )}
             />
             <DockyardBox
+                description={ScraperDescription()}
                 img={scraperImg}
                 title="Scraper"
                 functionCallName="scraper"
@@ -81,6 +92,7 @@ export const DockyardTabPanel = ({
                 requirementsMet={scraperRequirements(dockyardLevel, techLevels)}
             />
             <DockyardBox
+                description={SparrowDescription()}
                 img={sparrowImg}
                 title="Sparrow"
                 functionCallName="sparrow"
@@ -94,6 +106,7 @@ export const DockyardTabPanel = ({
                 requirementsMet={sparrowRequirements(dockyardLevel)}
             />
             <DockyardBox
+                description={FrigateDescription()}
                 img={frigateImg}
                 title="Frigate"
                 functionCallName="frigate"
@@ -107,6 +120,7 @@ export const DockyardTabPanel = ({
                 requirementsMet={frigateRequirements(dockyardLevel, techLevels)}
             />
             <DockyardBox
+                description={ArmadeDescription()}
                 img={armadeImg}
                 title="Armade"
                 functionCallName="armade"

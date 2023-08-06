@@ -14,13 +14,6 @@ const TextBox = styled.p`
     // padding-left: 5px;
 `;
 
-// const FloatImage = styled.img`
-//     float: left; /* Change to 'right' to float the image to the right */
-//     margin: 10px;
-//     width: 200px; /* Adjust as needed */
-//     height: 200px; /* Adjust as needed */
-// `;
-
 export function SteelMineDescription() {
     return (
         <>
@@ -86,17 +79,12 @@ export function EnergyMineDescription() {
         <>
             <Container>
                 <TextBox>
-                    Large-scale photovoltaic systems, commonly referred to as
-                    solar arrays, function as the primary power source for both
-                    the mining operations and the deuterium synthesis process.
-                    With each subsequent upgrade to the solar power facility,
-                    the total surface area encompassed by the photovoltaic cells
-                    expands. This increase in photovoltaic surface area directly
-                    correlates to an elevated energy output. Consequently, the
-                    energy distribution across the electrical grids of the
-                    planet experiences a proportionate amplification, thereby
-                    enhancing the overall energy supply to support the various
-                    operational demands on the planet.
+                    Large-scale solar arrays power mining and deuterium
+                    synthesis, expanding in surface area with each upgrade. This
+                    growth directly boosts energy output, resulting in a
+                    proportional increase in planetary electrical grid
+                    distribution, thereby enhancing the overall energy supply
+                    for the planet's operational demands.
                 </TextBox>
             </Container>
         </>
@@ -108,22 +96,15 @@ export function LabDescription() {
         <>
             <Container>
                 <TextBox>
-                    Research Labs serve as critical infrastructure within an
-                    empire, designated for the generation and refinement of
-                    technological assets. Their function is twofold: they
-                    facilitate the exploration of novel technologies and enable
-                    the enhancement of existing ones. Construction upgrades to
-                    these facilities correspond to increased research
-                    capabilities, thus providing access to higher levels of
-                    technological innovations. Rapid research execution is
-                    achieved through immediate deployment of scientific
-                    personnel to the colonies upon completion of each Research
-                    Lab level. This method of operation ensures the prompt
-                    commencement of research activities and development
-                    processes. Moreover, it promotes the efficient distribution
-                    of technological knowledge across the empire, aiding in the
-                    seamless integration of new technologies into existing
-                    systems and processes.
+                    Research Labs are vital to an empire, generating and
+                    refining technological assets. They explore new technologies
+                    and enhance existing ones. Upgrades to these facilities
+                    increase research capabilities, providing access to advanced
+                    innovations. Quick research is achieved by deploying
+                    scientific personnel to colonies when a Research Lab level
+                    is completed. This ensures prompt research and development,
+                    and aids in the swift integration of new technologies across
+                    the empire.
                 </TextBox>
             </Container>
         </>
@@ -135,20 +116,15 @@ export function DockyardDescription() {
         <>
             <Container>
                 <TextBox>
-                    The planetary dockyard is a specialized facility dedicated
-                    to the manufacturing of space assets, including various
-                    types of spacecraft and defensive systems. Spacecraft
-                    production involves a series of tasks: design, material
-                    procurement, assembly, systems integration, and quality
-                    testing. The range of spacecraft includes exploratory
-                    vessels, cargo carriers, and military ships. The dockyard
-                    also develops defensive mechanisms, such as anti-spacecraft
-                    weapons, shield generators, and orbital platforms equipped
-                    with kinetic and directed-energy weaponry. These systems
-                    undergo a similar rigorous production process. Staffed by
-                    expert personnel and managed for efficiency and safety, the
-                    dockyard plays a crucial role in maintaining and advancing
-                    the civilization's space-faring and defensive capabilities.
+                    The planetary dockyard manufactures space assets like
+                    various spacecraft and defensive systems, including
+                    exploratory vessels, cargo carriers, and military ships.
+                    This involves design, procurement, assembly, integration,
+                    and testing. Additionally, the dockyard develops defenses
+                    such as anti-spacecraft weapons and shield generators,
+                    following a similar production process. Managed by experts
+                    for efficiency and safety, the dockyard is essential for the
+                    civilization's space and defense capabilities.
                 </TextBox>
             </Container>
         </>

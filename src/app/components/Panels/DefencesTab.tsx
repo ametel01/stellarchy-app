@@ -12,6 +12,12 @@ import blasterImg from "@/assets/defences/blaster.png";
 import beamImg from "@/assets/defences/beam.png";
 import astralLauncherImg from "@/assets/defences/astral.png";
 import plasmaImg from "@/assets/defences/plasma.png";
+import {
+    BlasterDescription,
+    BeamDescription,
+    AstralDescription,
+    PlasmaDescription,
+} from "../Descriptions/DefencesPopover";
 
 interface Props {
     spendableResources?: Points;
@@ -32,6 +38,7 @@ export const DefenceTabPanel = ({
     return (
         <StyledTabPanel {...rest}>
             <DefencesBox
+                description={BlasterDescription()}
                 img={blasterImg}
                 title="Blaster"
                 functionCallName="blaster"
@@ -48,6 +55,7 @@ export const DefenceTabPanel = ({
                 requirementsMet={blasterRequirements(dockyardLevel)}
             />
             <DefencesBox
+                description={BeamDescription()}
                 img={beamImg}
                 title="Beam"
                 functionCallName="beam"
@@ -61,6 +69,7 @@ export const DefenceTabPanel = ({
                 requirementsMet={beamRequirements(dockyardLevel, techLevels)}
             />
             <DefencesBox
+                description={AstralDescription()}
                 img={astralLauncherImg}
                 title="Astral Launchen"
                 functionCallName="astralLauncher"
@@ -77,6 +86,7 @@ export const DefenceTabPanel = ({
                 requirementsMet={astralRequirements(dockyardLevel, techLevels)}
             />
             <DefencesBox
+                description={PlasmaDescription()}
                 img={plasmaImg}
                 title="Plasma Projector"
                 functionCallName="plasmaProjector"

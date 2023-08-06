@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
     Box,
     SubBox,
@@ -18,6 +19,7 @@ import plus from "@/assets/icons/Plus.svg";
 import React, { useMemo, useState } from "react";
 import useBuild, { UnitType } from "@/components/hooks/useBuild";
 import { Input } from "@mui/joy";
+import ImagePopover from "@/components/modals";
 
 interface Props {
     img: any;
@@ -27,6 +29,7 @@ interface Props {
     costUpdate?: { steel: number; quartz: number; tritium: number };
     hasEnoughResources?: boolean;
     requirementsMet?: boolean;
+    description: ReactNode;
 }
 
 type ButtonState = "valid" | "noResource" | "noRequirements";
@@ -47,6 +50,7 @@ const DockyardBox = ({
     costUpdate,
     functionCallName,
     requirementsMet,
+    description,
 }: Props) => {
     const [quantity, setQuantity] = useState(0);
 
@@ -130,6 +134,11 @@ const DockyardBox = ({
     return (
         <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
+                <ImagePopover
+                    image={img}
+                    title={title}
+                    descripiton={description}
+                />
                 <Image
                     src={img}
                     alt={title}

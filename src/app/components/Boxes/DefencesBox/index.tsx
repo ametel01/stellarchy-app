@@ -1,4 +1,5 @@
 import { LayerGroup } from "@/components/Icons/LayerGroup";
+import { ReactNode } from "react";
 import { Coins } from "@/components/Icons/Coins";
 import Image from "next/legacy/image";
 import { numberWithCommas } from "@/utils";
@@ -16,6 +17,7 @@ import {
     ImageContainer,
     ButtonContainer,
 } from "@/styles";
+import ImagePopover from "@/components/modals";
 import { ButtonBuild } from "@/components/ButtonMain";
 import { Input } from "@mui/joy";
 import { styled } from "styled-components";
@@ -33,6 +35,7 @@ interface Props {
     costUpdate?: { steel: number; quartz: number; tritium: number };
     hasEnoughResources?: boolean;
     requirementsMet?: boolean;
+    description: ReactNode;
 }
 
 type ButtonState = "valid" | "noResource" | "noRequirements";
@@ -53,6 +56,7 @@ const DefencesBox = ({
     costUpdate,
     functionCallName,
     requirementsMet,
+    description,
 }: Props) => {
     const [quantity, setQuantity] = useState(0);
 
@@ -138,6 +142,11 @@ const DefencesBox = ({
     return (
         <Box customcolor={actualButtonState?.color ?? "grey"}>
             <ImageContainer>
+                <ImagePopover
+                    image={img}
+                    title={title}
+                    descripiton={description}
+                />
                 <Image
                     src={img}
                     alt={title}
