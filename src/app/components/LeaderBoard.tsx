@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import styled from "styled-components";
 import { GAMEADDRESS } from "@/constants";
 import { GAMEABI } from "@/abi/stellarchy";
@@ -24,47 +23,44 @@ const BoardEntry = styled.div`
     align-items: center;
 `;
 
-function fetchLeaderBoard() {
-    const { data, isSuccess } = useContractRead({
+export const LeaderBoard = () => {
+    const { data: pointLeader } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
-        functionName: "getLeaderBoard",
+        functionName: "pointLeader",
     });
-    if (isSuccess) {
-        return data;
-    }
-    return fetchLeaderBoard();
-}
-
-export const LeaderBoard = () => {
-    const leaders = fetchLeaderBoard();
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            console.log("This will run after 1 second!");
-        }, 2500);
-        return () => clearTimeout(timer);
-    }, []);
 
     const { data: leadPoints } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getPlanetPoints",
-        args: [leaders![0]],
+        args: [pointLeader!],
+    });
+
+    const { data: techLeader } = useContractRead({
+        address: GAMEADDRESS,
+        abi: GAMEABI,
+        functionName: "techLeader",
     });
 
     const { data: leadTech } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getPlanetPoints",
-        args: [leaders![1]],
+        args: [techLeader!],
+    });
+
+    const { data: fleetLeader } = useContractRead({
+        address: GAMEADDRESS,
+        abi: GAMEABI,
+        functionName: "fleetLeader",
     });
 
     const { data: leadFleet } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getPlanetPoints",
-        args: [leaders![2]],
+        args: [fleetLeader!],
     });
 
     return (
@@ -76,7 +72,7 @@ export const LeaderBoard = () => {
                         <div style={{ display: "flex", alignItems: "center" }}>
                             <TrophyIcon />
                             <TitleContainer>Leader:&nbsp; </TitleContainer>
-                            {dataToNumber(leaders?.[0])}
+                            {dataToNumber(pointLeader)}
                             <TitleContainer>Score:&nbsp;</TitleContainer>
                             {dataToNumber(leadPoints)}
                         </div>
@@ -89,7 +85,7 @@ export const LeaderBoard = () => {
                         <div style={{ display: "flex", alignItems: "center" }}>
                             <TrophyIcon />
                             <TitleContainer>Tech:&nbsp; </TitleContainer>
-                            {dataToNumber(leaders?.[1])}
+                            {dataToNumber(techLeader)}
                             <TitleContainer>Score:&nbsp;</TitleContainer>
                             {dataToNumber(leadTech)}
                         </div>
@@ -102,7 +98,7 @@ export const LeaderBoard = () => {
                         <div style={{ display: "flex", alignItems: "center" }}>
                             <TrophyIcon />
                             <TitleContainer>Fleet:&nbsp; </TitleContainer>
-                            {dataToNumber(leaders?.[1])}
+                            {dataToNumber(fleetLeader)}
                             <TitleContainer>Score:&nbsp;</TitleContainer>
                             {dataToNumber(leadFleet)}
                         </div>
