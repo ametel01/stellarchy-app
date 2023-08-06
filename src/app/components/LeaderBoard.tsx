@@ -24,12 +24,20 @@ const BoardEntry = styled.div`
     align-items: center;
 `;
 
-export const LeaderBoard = () => {
-    const { data: leaders } = useContractRead({
+function fetchLeaderBoard() {
+    const { data, isSuccess } = useContractRead({
         address: GAMEADDRESS,
         abi: GAMEABI,
         functionName: "getLeaderBoard",
     });
+    if (isSuccess) {
+        return data;
+    }
+    return fetchLeaderBoard();
+}
+
+export const LeaderBoard = () => {
+    const leaders = fetchLeaderBoard();
 
     useEffect(() => {
         const timer = setTimeout(() => {
