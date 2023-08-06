@@ -5,7 +5,7 @@ import LogoAndRankContainer from "@/components/LogoAndRankContainer";
 import ResourcesContainer from "@/components/Resources";
 import { useAccount, useDisconnect } from "wagmi";
 import { CollectResources } from "@/components/hooks/useCollectResources";
-import { LeaderBoard } from "./LeaderBoard";
+// import { LeaderBoard } from "./LeaderBoard";
 
 const BodyContainer = styled.div`
     flex: 1;
@@ -24,7 +24,7 @@ const SideBar = () => {
             <LogoAndRankContainer account={account!} />
             <ResourcesContainer />
             <CollectResources />
-            <LeaderBoard />
+            {/* <LeaderBoard /> */}
         </BodyContainer>
     );
 };
